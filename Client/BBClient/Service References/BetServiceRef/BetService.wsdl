@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="BetService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:3651/Server/BetService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:3651/Server/BetService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:3651/Server/BetService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/BBServer" />
+      <xsd:import schemaLocation="http://localhost:3651/Server/BetService.svc?xsd=xsd3" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IBetService_TestConnection_InputMessage">
+    <wsdl:part name="parameters" element="tns:TestConnection" />
+  </wsdl:message>
+  <wsdl:message name="IBetService_TestConnection_OutputMessage">
+    <wsdl:part name="parameters" element="tns:TestConnectionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBetService_GetAccount_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAccount" />
+  </wsdl:message>
+  <wsdl:message name="IBetService_GetAccount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAccountResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBetService_MakeBet_InputMessage">
+    <wsdl:part name="parameters" element="tns:MakeBet" />
+  </wsdl:message>
+  <wsdl:message name="IBetService_MakeBet_OutputMessage">
+    <wsdl:part name="parameters" element="tns:MakeBetResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBetService_GetAccountAmount_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAccountAmount" />
+  </wsdl:message>
+  <wsdl:message name="IBetService_GetAccountAmount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAccountAmountResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBetService_AccountWithdraw_InputMessage">
+    <wsdl:part name="parameters" element="tns:AccountWithdraw" />
+  </wsdl:message>
+  <wsdl:message name="IBetService_AccountWithdraw_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AccountWithdrawResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBetService_AccountRefill_InputMessage">
+    <wsdl:part name="parameters" element="tns:AccountRefill" />
+  </wsdl:message>
+  <wsdl:message name="IBetService_AccountRefill_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AccountRefillResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBetService_CreateAccount_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateAccount" />
+  </wsdl:message>
+  <wsdl:message name="IBetService_CreateAccount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateAccountResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IBetService">
+    <wsdl:operation name="TestConnection">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBetService/TestConnection" message="tns:IBetService_TestConnection_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBetService/TestConnectionResponse" message="tns:IBetService_TestConnection_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAccount">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBetService/GetAccount" message="tns:IBetService_GetAccount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBetService/GetAccountResponse" message="tns:IBetService_GetAccount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="MakeBet">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBetService/MakeBet" message="tns:IBetService_MakeBet_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBetService/MakeBetResponse" message="tns:IBetService_MakeBet_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAccountAmount">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBetService/GetAccountAmount" message="tns:IBetService_GetAccountAmount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBetService/GetAccountAmountResponse" message="tns:IBetService_GetAccountAmount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AccountWithdraw">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBetService/AccountWithdraw" message="tns:IBetService_AccountWithdraw_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBetService/AccountWithdrawResponse" message="tns:IBetService_AccountWithdraw_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AccountRefill">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBetService/AccountRefill" message="tns:IBetService_AccountRefill_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBetService/AccountRefillResponse" message="tns:IBetService_AccountRefill_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateAccount">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBetService/CreateAccount" message="tns:IBetService_CreateAccount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBetService/CreateAccountResponse" message="tns:IBetService_CreateAccount_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IBetService" type="tns:IBetService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="TestConnection">
+      <soap:operation soapAction="http://tempuri.org/IBetService/TestConnection" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAccount">
+      <soap:operation soapAction="http://tempuri.org/IBetService/GetAccount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MakeBet">
+      <soap:operation soapAction="http://tempuri.org/IBetService/MakeBet" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAccountAmount">
+      <soap:operation soapAction="http://tempuri.org/IBetService/GetAccountAmount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AccountWithdraw">
+      <soap:operation soapAction="http://tempuri.org/IBetService/AccountWithdraw" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AccountRefill">
+      <soap:operation soapAction="http://tempuri.org/IBetService/AccountRefill" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateAccount">
+      <soap:operation soapAction="http://tempuri.org/IBetService/CreateAccount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="BetService">
+    <wsdl:port name="BasicHttpBinding_IBetService" binding="tns:BasicHttpBinding_IBetService">
+      <soap:address location="http://localhost:3651/Server/BetService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
