@@ -31,9 +31,64 @@ namespace BBClient.Pages
 
         private void UpdateAccountInfo()
         {
+
+            var client = new BetServiceClient();
+            account = client.GetAccount(account.Code);
+            client.Close();
             accountAmountTB.Text = account.Amount.ToString();
             accountCodeTB.Text = account.Code.ToString();
             accountFIOTB.Text = account.FIO;
         }
+
+        private void listUpdateBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var client = new BetServiceClient();
+            foreach (var ev in client.GetEvents())
+            {
+                EventsListView.Items.Add(new {ev.Factor, ev.Name });
+                
+            }
+            client.Close();
+        }
+        private void refillBtn_Click(object sender, RoutedEventArgs e)
+        {
+            //payment script should be called here
+            var client = new BetServiceClient();
+            var amount = int.Parse(refillTB.Text);
+            if (client.AccountRefill(account.Code, amount))
+            {
+                account.Amount += amount;
+                accountAmountTB.Text = account.Amount.ToString();
+                amountStatus.Text = "Success";
+            }
+            else
+            {
+                amountStatus.Text = "Account cannot be refilled";
+            }
+            client.Close();
+        }
+
+        private void withdrawBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var client = new BetServiceClient();
+            var amount = int.Parse(withdrawTB.Text);
+            if (client.AccountWithdraw(account.Code, amount))
+            {
+                account.Amount -= amount;
+                accountAmountTB.Text = account.Amount.ToString();
+                amountStatus.Text = "Success";
+            }
+            else
+            {
+                amountStatus.Text = "Cannot withdraw from account";
+            }
+            client.Close();
+        }
+
+        private void updateBtn_Click(object sender, RoutedEventArgs e)
+        {
+            UpdateAccountInfo();
+        }
+        
     }
 }

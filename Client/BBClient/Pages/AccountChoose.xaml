@@ -17,7 +17,7 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Grid HorizontalAlignment="Left" Height="280" Margin="10,10,0,0" VerticalAlignment="Top" Width="280" Grid.RowSpan="2">
+        <Grid HorizontalAlignment="Left" Height="280" Margin="-49,10,0,0" VerticalAlignment="Top" Width="280" Grid.RowSpan="2">
             <TextBlock x:Name="accCodeToolTipTB" HorizontalAlignment="Left" Margin="65,37,0,0" TextWrapping="Wrap" Text="Enter Account Code" VerticalAlignment="Top" Width="130"/>
             <TextBox x:Name="accCodeTB" HorizontalAlignment="Left" Height="23" Margin="65,71,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130" ToolTip="Enter your account code here" AllowDrop="False"/>
             <Button x:Name="loginBtn" Content="Login" HorizontalAlignment="Left" Margin="97,250,0,0" VerticalAlignment="Top" Width="75" Click="loginBtn_Click"/>
@@ -31,15 +31,15 @@
                 </TextBlock.Foreground>
             </TextBlock>
         </Grid>
-        <TextBlock x:Name="creationTTTB" Grid.Column="1" HorizontalAlignment="Left" Margin="89,10,0,0" TextWrapping="Wrap" Text="Create new Account" VerticalAlignment="Top" Width="132" Height="21"/>
-        <TextBlock x:Name="NameTBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="19,49,0,0" TextWrapping="Wrap" Text="Name" VerticalAlignment="Top" Width="65" Foreground="Black" Background="White"/>
-        <TextBox x:Name="accNameTB" Grid.Column="1" HorizontalAlignment="Left" Height="16" Margin="113,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="108"/>
-        <TextBlock x:Name="SurnameTBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="19,86,0,0" TextWrapping="Wrap" Text="Surname" VerticalAlignment="Top" Width="65"/>
-        <TextBox x:Name="accSurnameTB" Grid.Column="1" HorizontalAlignment="Left" Height="16" Margin="113,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="108"/>
-        <TextBlock x:Name="LastNameTBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="19,124,0,0" TextWrapping="Wrap" Text="Lastname" VerticalAlignment="Top" Width="65"/>
-        <TextBox x:Name="accLastNameTB" Grid.Column="1" HorizontalAlignment="Left" Height="16" Margin="113,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="108"/>
-        <Button x:Name="accountCreateBtn" Content="Create new Account" Grid.Column="1" HorizontalAlignment="Left" Margin="106,120,0,0" Grid.Row="1" VerticalAlignment="Top" Width="115" Click="accountCreateBtn_Click"/>
-        <TextBlock x:Name="accountCreationToolTip" Grid.Column="1" HorizontalAlignment="Left" Margin="106,38,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="115"/>
+        <TextBlock x:Name="creationTTTB" Grid.Column="1" HorizontalAlignment="Left" Margin="100,9,0,0" TextWrapping="Wrap" Text="Create new Account" VerticalAlignment="Top" Width="132" Height="21"/>
+        <TextBlock x:Name="NameTBlock" HorizontalAlignment="Left" Margin="30,48,0,0" TextWrapping="Wrap" Text="Name" VerticalAlignment="Top" Width="65" Foreground="Black" Background="White" Grid.Column="1"/>
+        <TextBox x:Name="accNameTB" Grid.Column="1" HorizontalAlignment="Left" Height="16" Margin="124,48,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="108"/>
+        <TextBlock x:Name="SurnameTBlock" HorizontalAlignment="Left" Margin="30,85,0,0" TextWrapping="Wrap" Text="Surname" VerticalAlignment="Top" Width="65" Background="White" Grid.Column="1"/>
+        <TextBox x:Name="accSurnameTB" Grid.Column="1" HorizontalAlignment="Left" Height="16" Margin="124,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="108"/>
+        <TextBlock x:Name="LastNameTBlock" HorizontalAlignment="Left" Margin="30,123,0,0" TextWrapping="Wrap" Text="Lastname" VerticalAlignment="Top" Width="65" Background="White" Grid.Column="1"/>
+        <TextBox x:Name="accLastNameTB" Grid.Column="1" HorizontalAlignment="Left" Height="16" Margin="124,123,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="108"/>
+        <Button x:Name="accountCreateBtn" Content="Create new Account" HorizontalAlignment="Left" Margin="61,38,0,0" Grid.Row="1" VerticalAlignment="Top" Width="115" Click="accountCreateBtn_Click" Grid.Column="1"/>
+        <TextBlock x:Name="accountCreationToolTip" Grid.Column="1" HorizontalAlignment="Left" Margin="176,37,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="115"/>
 
     </Grid>
 </Page>

@@ -99,6 +99,9 @@
     <None Include="Service References\BetServiceRef\BBClient.BetServiceRef.Account.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\BetServiceRef\BBClient.BetServiceRef.Event.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\BetServiceRef\BetService.wsdl" />
     <None Include="Service References\BetServiceRef\BetService.xsd">
       <SubType>Designer</SubType>
@@ -123,9 +126,6 @@
     <None Include="Service References\BetServiceRef\BetService.disco" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\BetServiceRef\BetService3.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Service References\BetServiceRef\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>

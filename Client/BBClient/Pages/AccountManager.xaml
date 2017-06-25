@@ -5,10 +5,10 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:BBClient.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="300"
-      Title="AccountManager">
+      d:DesignHeight="300"
+      Title="AccountManager" Width="600">
 
-    <Grid>
+    <Grid Margin="-10,0,10,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
@@ -23,5 +23,25 @@
         <TextBlock x:Name="FIOText" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Account:" VerticalAlignment="Top"/>
         <TextBlock x:Name="accountCodeTB" HorizontalAlignment="Left" Margin="90,102,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="200"/>
         <TextBlock x:Name="accCodeText" HorizontalAlignment="Left" Margin="10,102,0,0" TextWrapping="Wrap" Text="Account Code" VerticalAlignment="Top" Width="75"/>
+        <TextBlock x:Name="accountRefillText" HorizontalAlignment="Left" Margin="0,13,0,0" TextWrapping="Wrap" Text="Refill Your Account" VerticalAlignment="Top" Grid.Column="1" Width="107"/>
+        <TextBox x:Name="refillTB" Grid.Column="1" HorizontalAlignment="Left" Height="18" Margin="0,34,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
+        <Button x:Name="refillBtn" Content="Refill" Grid.Column="1" HorizontalAlignment="Left" Margin="10,120,0,0" VerticalAlignment="Top" Width="75" Click="refillBtn_Click"/>
+        <TextBlock x:Name="amountStatus" Grid.Column="1" HorizontalAlignment="Left" Margin="10,90,0,0" TextWrapping="Wrap" Text="status" VerticalAlignment="Top" Width="280"/>
+        <TextBlock x:Name="accountWithdrawText" HorizontalAlignment="Left" Margin="145,13,0,0" TextWrapping="Wrap" Text="Withdraw from account" VerticalAlignment="Top" Grid.Column="1" Width="107"/>
+        <TextBox x:Name="withdrawTB" Grid.Column="1" HorizontalAlignment="Left" Height="18" Margin="145,34,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
+        <Button x:Name="withdrawBtn" Content="Withdraw" Grid.Column="1" HorizontalAlignment="Left" Margin="159,120,0,0" VerticalAlignment="Top" Width="75" Click="withdrawBtn_Click"/>
+        <Button x:Name="updateBtn" Content="Update" HorizontalAlignment="Left" Margin="90,0,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="updateBtn_Click"/>
+        <Button x:Name="listUpdateBtn" Content="Update Events" Grid.Column="1" HorizontalAlignment="Left" Margin="574,10,-356,0" VerticalAlignment="Top" Width="82" Click="listUpdateBtn_Click"/>
+        <Button x:Name="simpleBetBtn" Content="Make Simple Bet" Grid.Column="1" HorizontalAlignment="Left" Margin="262,10,-74,0" VerticalAlignment="Top" Width="112" Height="34"/>
+        <Button x:Name="systemBetBtn" Content="Make System Bet" Grid.Column="1" HorizontalAlignment="Left" Margin="262,51,-74,0" VerticalAlignment="Top" Width="112" Height="34"/>
+        <Button x:Name="superExpressBtn" Content="Make Super Express" Grid.Column="1" HorizontalAlignment="Left" Margin="262,94,-74,0" VerticalAlignment="Top" Width="112" Height="32"/>
+        <ListView x:Name="EventsListView" Grid.Column="1" HorizontalAlignment="Left" Height="175" Margin="379,-5,-269,0" VerticalAlignment="Top" Width="190" Grid.RowSpan="2">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Path=Name}"/>
+                    <GridViewColumn Header="Factor" DisplayMemberBinding="{Binding Path=Factor}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </Page>

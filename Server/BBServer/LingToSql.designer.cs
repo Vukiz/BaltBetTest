@@ -95,7 +95,7 @@ namespace BBServer
 		
 		private string _FIO;
 		
-		private int _Amount;
+		private decimal _Amount;
 		
 		private EntitySet<Bet> _Bets;
 		
@@ -107,7 +107,7 @@ namespace BBServer
     partial void OnCodeChanged();
     partial void OnFIOChanging(string value);
     partial void OnFIOChanged();
-    partial void OnAmountChanging(int value);
+    partial void OnAmountChanging(decimal value);
     partial void OnAmountChanged();
     #endregion
 		
@@ -157,8 +157,8 @@ namespace BBServer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Amount", DbType="Int NOT NULL")]
-		public int Amount
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Amount", DbType="Money NOT NULL")]
+		public decimal Amount
 		{
 			get
 			{
@@ -239,6 +239,8 @@ namespace BBServer
 		
 		private string _Results;
 		
+		private System.DateTime _BetDate;
+		
 		private EntityRef<Account> _Account;
 		
     #region Extensibility Method Definitions
@@ -255,6 +257,8 @@ namespace BBServer
     partial void OnWin_AmountChanged();
     partial void OnResultsChanging(string value);
     partial void OnResultsChanged();
+    partial void OnBetDateChanging(System.DateTime value);
+    partial void OnBetDateChanged();
     #endregion
 		
 		public Bet()
@@ -363,6 +367,26 @@ namespace BBServer
 					this._Results = value;
 					this.SendPropertyChanged("Results");
 					this.OnResultsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BetDate", DbType="Date NOT NULL")]
+		public System.DateTime BetDate
+		{
+			get
+			{
+				return this._BetDate;
+			}
+			set
+			{
+				if ((this._BetDate != value))
+				{
+					this.OnBetDateChanging(value);
+					this.SendPropertyChanging();
+					this._BetDate = value;
+					this.SendPropertyChanged("BetDate");
+					this.OnBetDateChanged();
 				}
 			}
 		}

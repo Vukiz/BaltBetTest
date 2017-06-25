@@ -14,19 +14,37 @@ namespace BBServer
     {
         [OperationContract]
         string TestConnection();
-
+        /// <summary>
+        /// returns account by code
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
         [OperationContract]
         Account GetAccount(int code);
 
         [OperationContract]
-        void MakeBet(SqlMoney amount, BetType type, GameResult result);
+        List<Event> GetEvents();
 
         [OperationContract]
-        int GetAccountAmount(int accountCode);
+        void MakeBet(int accCode, decimal amount, BetType type, List<Event> results);
+
+        /// <summary>
+        /// returns account amount
+        /// </summary>
+        /// <param name="accountCode"></param>
+        /// <returns></returns>
+        [OperationContract]
+        decimal GetAccountAmount(int accountCode);
 
         [OperationContract]
         bool AccountWithdraw(int accountCode, int amount);
 
+        /// <summary>
+        /// refills account amount and returns true if success
+        /// </summary>
+        /// <param name="accountCode"></param>
+        /// <param name="amount"></param>
+        /// <returns></returns>
         [OperationContract]
         bool AccountRefill(int accountCode, int amount);
 
@@ -36,11 +54,18 @@ namespace BBServer
 
      // Use a data contract as illustrated in the sample below to add composite types to service operations.
     [DataContract]
+    public class Event
+    {
+        [DataMember]
+        public decimal Factor { get; set; }
+        [DataMember]
+        public string Name { get; set; }
+    }
     public enum GameResult
     {
-        [EnumMember] Win,
-        [EnumMember] Spare,
-        [EnumMember] Lose
+        [EnumMember] Win = 1,
+        [EnumMember] Spare = 0,
+        [EnumMember] Lose = -1
     }
 
     public enum BetType
@@ -49,8 +74,6 @@ namespace BBServer
         Simple,
         [EnumMember]
         System,
-        [EnumMember]
-        Express,
         [EnumMember]
         SuperExpress
     }

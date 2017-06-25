@@ -37,7 +37,7 @@ namespace BBClient.Pages
 
         private void loginBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            loginBtn.IsEnabled = false;
             if (IsDigit(accCodeTB.Text))
             {
                 loginStatus.Text = "";
@@ -61,6 +61,7 @@ namespace BBClient.Pages
             {
                 loginStatus.Text = "Incorrect code";
             }
+            loginBtn.IsEnabled = true;
         }
 
         private void accountCreateBtn_Click(object sender, RoutedEventArgs e)
@@ -91,5 +92,6 @@ namespace BBClient.Pages
             }
             accountCreateBtn.IsEnabled = true;
         }
+
     }
 }

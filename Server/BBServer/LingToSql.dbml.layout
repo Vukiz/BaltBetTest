@@ -2,23 +2,23 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="LingToSqlAccount">
   <DataContextMoniker Name="/LingToSqlAccountDataContext" />
   <nestedChildShapes>
-    <classShape Id="52cb8b58-e087-4248-b14a-4324705a8cc1" absoluteBounds="2, 2.375, 2.25, 1.3862939453125">
+    <classShape Id="6b7f1b95-2c0f-4322-9037-da229418e28e" absoluteBounds="2.375, 2.375, 2, 1.3862939453125">
       <DataClassMoniker Name="/LingToSqlAccountDataContext/Account" />
       <nestedChildShapes>
-        <elementListCompartment Id="4b04f331-3dec-46de-b1fe-fb0b21195c39" absoluteBounds="2.015, 2.835, 2.2199999999999998, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="8efe9cdf-22cd-49dc-9ec7-18186fb66a62" absoluteBounds="2.39, 2.835, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="acc5e76e-a991-4769-9b4e-fa8b8443952f" absoluteBounds="7.125, 2.125, 2, 1.7708968098958327">
+    <classShape Id="aa68ec62-f6e9-4531-bbc6-42c2ae05124b" absoluteBounds="5.125, 2.125, 2, 1.9631982421875">
       <DataClassMoniker Name="/LingToSqlAccountDataContext/Bet" />
       <nestedChildShapes>
-        <elementListCompartment Id="292da790-5911-42ab-9afa-46ede792a9aa" absoluteBounds="7.14, 2.585, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="5e9fc01d-7ea8-45dc-9584-7dc1d9b3c7d0" absoluteBounds="5.14, 2.585, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(4.25 : 3.06814697265625); (7.125 : 3.06814697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(4.375 : 3.06814697265625); (5.125 : 3.06814697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/LingToSqlAccountDataContext/Account/Account_Bet" />
       <nodes>
-        <classShapeMoniker Id="52cb8b58-e087-4248-b14a-4324705a8cc1" />
-        <classShapeMoniker Id="acc5e76e-a991-4769-9b4e-fa8b8443952f" />
+        <classShapeMoniker Id="6b7f1b95-2c0f-4322-9037-da229418e28e" />
+        <classShapeMoniker Id="aa68ec62-f6e9-4531-bbc6-42c2ae05124b" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

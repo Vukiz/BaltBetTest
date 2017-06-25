@@ -23,11 +23,10 @@
   </MetadataSources>
   <Metadata>
     <MetadataFile FileName="BetService.xsd" MetadataType="Schema" ID="dd02cb1d-9796-453e-9633-9010dd2c89dd" SourceId="1" SourceUrl="http://localhost:3651/Server/BetService.svc?xsd=xsd1" />
-    <MetadataFile FileName="BetService.wsdl" MetadataType="Wsdl" ID="659f9493-3638-40d6-ae87-c0b3be189477" SourceId="1" SourceUrl="http://localhost:3651/Server/BetService.svc?wsdl" />
-    <MetadataFile FileName="BetService2.xsd" MetadataType="Schema" ID="0789ae3c-4d39-4190-bcc0-fe6ee4fe6420" SourceId="1" SourceUrl="http://localhost:3651/Server/BetService.svc?xsd=xsd2" />
-    <MetadataFile FileName="BetService1.xsd" MetadataType="Schema" ID="37dc927f-2d90-4d28-a1ad-783fd92063c9" SourceId="1" SourceUrl="http://localhost:3651/Server/BetService.svc?xsd=xsd0" />
     <MetadataFile FileName="BetService.disco" MetadataType="Disco" ID="9a446347-a6d0-4dcb-a43d-0ca74d321c58" SourceId="1" SourceUrl="http://localhost:3651/Server/BetService.svc?disco" />
-    <MetadataFile FileName="BetService3.xsd" MetadataType="Schema" ID="25c11e31-a1bb-4812-b8cd-c484b090e64e" SourceId="1" SourceUrl="http://localhost:3651/Server/BetService.svc?xsd=xsd3" />
+    <MetadataFile FileName="BetService.wsdl" MetadataType="Wsdl" ID="659f9493-3638-40d6-ae87-c0b3be189477" SourceId="1" SourceUrl="http://localhost:3651/Server/BetService.svc?wsdl" />
+    <MetadataFile FileName="BetService1.xsd" MetadataType="Schema" ID="37dc927f-2d90-4d28-a1ad-783fd92063c9" SourceId="1" SourceUrl="http://localhost:3651/Server/BetService.svc?xsd=xsd0" />
+    <MetadataFile FileName="BetService2.xsd" MetadataType="Schema" ID="0789ae3c-4d39-4190-bcc0-fe6ee4fe6420" SourceId="1" SourceUrl="http://localhost:3651/Server/BetService.svc?xsd=xsd2" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

@@ -5,7 +5,6 @@
       <xsd:import schemaLocation="http://localhost:3651/Server/BetService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost:3651/Server/BetService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://localhost:3651/Server/BetService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/BBServer" />
-      <xsd:import schemaLocation="http://localhost:3651/Server/BetService.svc?xsd=xsd3" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IBetService_TestConnection_InputMessage">
@@ -19,6 +18,12 @@
   </wsdl:message>
   <wsdl:message name="IBetService_GetAccount_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAccountResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBetService_GetEvents_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetEvents" />
+  </wsdl:message>
+  <wsdl:message name="IBetService_GetEvents_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetEventsResponse" />
   </wsdl:message>
   <wsdl:message name="IBetService_MakeBet_InputMessage">
     <wsdl:part name="parameters" element="tns:MakeBet" />
@@ -59,6 +64,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IBetService/GetAccount" message="tns:IBetService_GetAccount_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IBetService/GetAccountResponse" message="tns:IBetService_GetAccount_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetEvents">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBetService/GetEvents" message="tns:IBetService_GetEvents_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBetService/GetEventsResponse" message="tns:IBetService_GetEvents_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="MakeBet">
       <wsdl:input wsaw:Action="http://tempuri.org/IBetService/MakeBet" message="tns:IBetService_MakeBet_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IBetService/MakeBetResponse" message="tns:IBetService_MakeBet_OutputMessage" />
@@ -93,6 +102,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetAccount">
       <soap:operation soapAction="http://tempuri.org/IBetService/GetAccount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEvents">
+      <soap:operation soapAction="http://tempuri.org/IBetService/GetEvents" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

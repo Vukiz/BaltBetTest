@@ -27,12 +27,25 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetEvents">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetEventsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/BBServer" minOccurs="0" name="GetEventsResult" nillable="true" type="q2:ArrayOfEvent" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="MakeBet">
     <xs:complexType>
       <xs:sequence>
+        <xs:element minOccurs="0" name="accCode" type="xs:int" />
         <xs:element minOccurs="0" name="amount" type="xs:decimal" />
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/BBServer" minOccurs="0" name="type" type="q2:BetType" />
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/BBServer" minOccurs="0" name="result" type="q3:GameResult" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/BBServer" minOccurs="0" name="type" type="q3:BetType" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/BBServer" minOccurs="0" name="results" nillable="true" type="q4:ArrayOfEvent" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -51,7 +64,7 @@
   <xs:element name="GetAccountAmountResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="GetAccountAmountResult" type="xs:int" />
+        <xs:element minOccurs="0" name="GetAccountAmountResult" type="xs:decimal" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -95,7 +108,7 @@
   <xs:element name="CreateAccountResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/BBServer" minOccurs="0" name="CreateAccountResult" nillable="true" type="q4:Account" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/BBServer" minOccurs="0" name="CreateAccountResult" nillable="true" type="q5:Account" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
