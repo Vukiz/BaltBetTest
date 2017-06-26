@@ -11,11 +11,9 @@ namespace BBClient.Pages
     /// </summary>
     public partial class AccountChoose : Page
     {
-        BetServiceClient client;
         public AccountChoose()
         {
             InitializeComponent();
-            client = new BetServiceClient();
             loginStatus.Text = "";
         }
         
@@ -25,6 +23,7 @@ namespace BBClient.Pages
             var accCode = -1;
             if (int.TryParse(accCodeTB.Text, out accCode))
             {
+                var client = new BetServiceClient();
                 try
                 {
                     client.Open();
@@ -66,6 +65,7 @@ namespace BBClient.Pages
             }
             else
             {
+                var client = new BetServiceClient();
                 try
                 {
                     client.Open();

@@ -34,10 +34,6 @@ namespace BBClient.Pages
             {
                 MessageBox.Show("Connection problem");
             }
-            finally
-            {
-                client.Close();
-            }
         }
 
         private void EventListUpdateBtnClick(object sender, RoutedEventArgs e)
@@ -184,15 +180,13 @@ namespace BBClient.Pages
             try
             {
                 client.Open();
-                if (!string.IsNullOrEmpty(betCodeTB.Text))
+                int betCode;
+                if (!string.IsNullOrEmpty(betCodeTB.Text) && (int.TryParse(betCodeTB.Text, out betCode)))
                 {
-                    int betCode;
-                    if (int.TryParse(betCodeTB.Text, out betCode))
-                    {
                         var bet = client.GetBet(betCode);
                         BetsListView.Items.Clear();
                         BetsListView.Items.Add(bet);
-                    }
+                    
                 }
                 else
                 {

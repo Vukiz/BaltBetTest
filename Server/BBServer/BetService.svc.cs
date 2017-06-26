@@ -124,8 +124,15 @@ namespace BBServer
 
         public Account GetAccount(int code)
         {
-            var query = from account in db.Accounts where account.Code == code select account;
-            return !query.Any() ? new Account() : query.First();
+            try
+            {
+                return db.Accounts.Single(acc => acc.Code == code);
+            }
+            catch (Exception ex)
+            {
+                return new Account();
+            }
+
         }
 
         private decimal SetSimpleWin(decimal amount, Event currentEvent)
