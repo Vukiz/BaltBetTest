@@ -25,7 +25,6 @@ namespace BBClient.Pages
             {
                 client.Open();
                 account = client.GetAccount(code);
-                client.Close();
                 accountAmountTB.Text = account.Amount.ToString();
                 accountCodeTB.Text = account.Code.ToString();
                 accountFIOTB.Text = account.FIO;
@@ -33,6 +32,10 @@ namespace BBClient.Pages
             catch (Exception ex)
             {
                 MessageBox.Show("Connection problem");
+            }
+            finally
+            {
+                client.Close();
             }
         }
 
