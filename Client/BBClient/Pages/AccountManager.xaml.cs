@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using BBClient.BetServiceRef;
@@ -49,7 +50,7 @@ namespace BBClient.Pages
                 EventsListView.Items.Clear();
                 foreach (var ev in events)
                 {
-                    EventsListView.Items.Add(new Event { Factor = ev.Factor, Name = ev.Name });
+                    EventsListView.Items.Add(ev);
                 }
             }
             catch (Exception ex)
@@ -74,12 +75,12 @@ namespace BBClient.Pages
                 {
                     account.Amount += amount;
                     accountAmountTB.Text = account.Amount.ToString();
-                    amountStatus.Text = "Success";
+                    MessageBox.Show($"Succesfully refilled account by {amount}");
                     refillTB.Text = "";
                 }
                 else
                 {
-                    amountStatus.Text = "Account cannot be refilled";
+                    MessageBox.Show($"Account cannot be refilled by {amount}");
                 }
             }
             catch (Exception ex)
@@ -96,7 +97,7 @@ namespace BBClient.Pages
         {
             if (EventsListView.SelectedItem == null)
             {
-                BetStatus.Content = "Select event to play with";
+                MessageBox.Show("You should select event form the list");
             }
             else
             {
@@ -109,13 +110,13 @@ namespace BBClient.Pages
                 int betAmount;
                 if (!int.TryParse(BetTextBox.Text, out betAmount))
                 {
-                    BetStatus.Content = "Wrong bet";
+                    MessageBox.Show("Wrong bet");
                 }
                 else
                 {
                     if (betAmount > account.Amount)
                     {
-                        BetStatus.Content = "Not Enough money";
+                        MessageBox.Show("Not enough money");
                     }
                     else
                     {
@@ -125,7 +126,7 @@ namespace BBClient.Pages
                             client.Open();
                             client.AccountWithdraw(account.Code, betAmount);
                             client.MakeBet(account.Code, betAmount, BetType.Simple, new[] { results });
-                            BetStatus.Content = "Bet Success";
+                            MessageBox.Show("Bet success");
                             BetTextBox.Text = "";
                         }
                         catch (Exception ex)
@@ -152,12 +153,14 @@ namespace BBClient.Pages
                 {
                     account.Amount -= amount;
                     accountAmountTB.Text = account.Amount.ToString();
-                    amountStatus.Text = "Success";
+
+                    MessageBox.Show($"Succesfully withdrew  {amount}");
                     withdrawTB.Text = "";
                 }
                 else
                 {
-                    amountStatus.Text = "Cannot withdraw from account";
+
+                    MessageBox.Show($"Cannot withdrew {amount}");
                 }
             }
             catch (Exception ex)

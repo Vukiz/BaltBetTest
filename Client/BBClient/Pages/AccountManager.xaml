@@ -36,8 +36,6 @@
                  TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Grid.ColumnSpan="2" />
         <Button x:Name="refillBtn" Content="Refill" HorizontalAlignment="Left" Margin="278,70,0,0"
                 VerticalAlignment="Top" Width="75" Click="RefillBtnClick" Grid.ColumnSpan="2" />
-        <TextBlock x:Name="amountStatus" Grid.Column="1" HorizontalAlignment="Left" Margin="57,102,0,0"
-                   TextWrapping="Wrap" Text="status" VerticalAlignment="Top" Width="145" />
         <TextBlock x:Name="accountWithdrawText" HorizontalAlignment="Left" Margin="102,10,0,0" TextWrapping="Wrap"
                    Text="Withdraw from account" VerticalAlignment="Top" Grid.Column="1" Width="107" />
         <TextBox x:Name="withdrawTB" Grid.Column="1" HorizontalAlignment="Left" Height="18" Margin="102,47,0,0"
@@ -54,9 +52,6 @@
                 Margin="262,51,-74,0" VerticalAlignment="Top" Width="112" Height="34" IsEnabled="False" />
         <Button x:Name="SuperExpressBtn" Content="Make Super Express" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left"
                 Margin="262,94,-74,0" VerticalAlignment="Top" Width="112" Height="32" IsEnabled="False" />
-        <Label x:Name="BetStatus" Content="Select events you want to play with." Grid.Column="1"
-               HorizontalAlignment="Left" Margin="379,61,-284,0" VerticalAlignment="Top" Width="205" Grid.Row="1"
-               Height="59" />
         <TextBox x:Name="BetTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="379,31,-199,0"
                  TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
         <Label x:Name="BetLabel" Content="Your bet" Grid.Column="1" HorizontalAlignment="Left" Margin="379,5,-179,0"
@@ -72,11 +67,11 @@
         <ListView x:Name="BetsListView" HorizontalAlignment="Left" Height="100" Margin="0,31,0,0" Grid.Row="1" VerticalAlignment="Top" Width="499" Grid.ColumnSpan="2">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Code" Width="100"  DisplayMemberBinding="{Binding Code}"/>
-                    <GridViewColumn Header="Result" Width="100"  DisplayMemberBinding="{Binding Result}"/>
-                    <GridViewColumn Header="Amount" Width="100"  DisplayMemberBinding="{Binding Amount}"/>
-                    <GridViewColumn Header="WinAmount" Width="100"  DisplayMemberBinding="{Binding WinAmount}"/>
-                    <GridViewColumn Header="Date" Width="100"  DisplayMemberBinding="{Binding Date}"/>
+                    <GridViewColumn Header="Code" Width="Auto"  DisplayMemberBinding="{Binding Code}"/>
+                    <GridViewColumn Header="Result" Width="Auto"  DisplayMemberBinding="{Binding Results}"/>
+                    <GridViewColumn Header="Amount" Width="Auto"  DisplayMemberBinding="{Binding Amount}"/>
+                    <GridViewColumn Header="WinAmount" Width="Auto"  DisplayMemberBinding="{Binding Win_Amount}"/>
+                    <GridViewColumn Header="Date" Width="Auto"  DisplayMemberBinding="{Binding Date}"/>
                 </GridView>
             </ListView.View>
         </ListView>
