@@ -35,7 +35,7 @@
         <TextBox x:Name="refillTB" HorizontalAlignment="Left" Height="18" Margin="278,47,0,0"
                  TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Grid.ColumnSpan="2" />
         <Button x:Name="refillBtn" Content="Refill" HorizontalAlignment="Left" Margin="278,70,0,0"
-                VerticalAlignment="Top" Width="75" Click="refillBtn_Click" Grid.ColumnSpan="2" />
+                VerticalAlignment="Top" Width="75" Click="RefillBtnClick" Grid.ColumnSpan="2" />
         <TextBlock x:Name="amountStatus" Grid.Column="1" HorizontalAlignment="Left" Margin="57,102,0,0"
                    TextWrapping="Wrap" Text="status" VerticalAlignment="Top" Width="145" />
         <TextBlock x:Name="accountWithdrawText" HorizontalAlignment="Left" Margin="102,10,0,0" TextWrapping="Wrap"
@@ -43,12 +43,12 @@
         <TextBox x:Name="withdrawTB" Grid.Column="1" HorizontalAlignment="Left" Height="18" Margin="102,47,0,0"
                  TextWrapping="Wrap" VerticalAlignment="Top" Width="100" />
         <Button x:Name="withdrawBtn" Content="Withdraw" Grid.Column="1" HorizontalAlignment="Left" Margin="111,70,0,0"
-                VerticalAlignment="Top" Width="75" Click="withdrawBtn_Click" />
+                VerticalAlignment="Top" Width="75" Click="WithdrawBtnClick" />
         <Button x:Name="updateBtn" Content="Update" HorizontalAlignment="Left" Margin="161,51,0,0"
-                VerticalAlignment="Top" Width="75" Click="updateBtn_Click" />
+                VerticalAlignment="Top" Width="75" Click="UpdateBtnClick" />
         <Button x:Name="listUpdateBtn" Content="Update Events" Grid.Column="1" HorizontalAlignment="Left"
-                Margin="601,71,-383,0" VerticalAlignment="Top" Width="82" Click="listUpdateBtn_Click" />
-        <Button x:Name="simpleBetBtn" Click="SimpleBet_Click" Content="Make Simple Bet" Grid.Column="1"
+                Margin="601,71,-383,0" VerticalAlignment="Top" Width="82" Click="ListUpdateBtnClick" />
+        <Button x:Name="simpleBetBtn" Click="SimpleBetClick" Content="Make Simple Bet" Grid.Column="1"
                 HorizontalAlignment="Left" Margin="262,10,-74,0" VerticalAlignment="Top" Width="112" Height="34" />
         <Button x:Name="systemBetBtn" Content="Make System Bet" Grid.Column="1" HorizontalAlignment="Left"
                 Margin="262,51,-74,0" VerticalAlignment="Top" Width="112" Height="34" />
@@ -83,10 +83,10 @@
         <TextBlock x:Name="BetsText" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Bets" VerticalAlignment="Top" Width="133"/>
         <TextBox x:Name="betCodeTB" HorizontalAlignment="Left" Height="18" Margin="204,54,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="86" Grid.Column="1"/>
         <TextBlock x:Name="codeBet" HorizontalAlignment="Left" Margin="204,33,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Get bet by code" VerticalAlignment="Top" Width="86" Grid.Column="1"/>
-        <Button x:Name="BetUpdateBtn" Content="Update Bets" Grid.Column="1" HorizontalAlignment="Left" Margin="204,111,0,0" Grid.Row="1" VerticalAlignment="Top" Width="86" Click="BetUpdateBtn_Click"/>
+        <Button x:Name="BetUpdateBtn" Content="Update Bets" Grid.Column="1" HorizontalAlignment="Left" Margin="204,111,0,0" Grid.Row="1" VerticalAlignment="Top" Width="86" Click="BetUpdateBtnClick"/>
         <Label x:Name="label" Content="First is winner" Grid.Column="1" HorizontalAlignment="Left" Margin="589,102,-389,0" VerticalAlignment="Top" Width="100"/>
         <Label x:Name="label1" Content="&quot; : &quot; means spare" Grid.Column="1" HorizontalAlignment="Left" Margin="589,132,-389,0" VerticalAlignment="Top" Width="100" Grid.RowSpan="2"/>
-        <Button x:Name="EventAddBtn" Content="Add Event" Grid.Column="1" HorizontalAlignment="Left" Margin="509,159,-284,-29" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="EventAddBtn_Click"/>
+        <Button x:Name="EventAddBtn" Content="Add Event" Grid.Column="1" HorizontalAlignment="Left" Margin="509,159,-284,-29" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="EventAddBtnClick"/>
         <TextBox x:Name="EventNameTB" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="364,145,-184,-18" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="EventFactorTB" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="364,173,-184,-46" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Label x:Name="label2" Content="Name" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="279,145,-59,-18" Grid.Row="1" VerticalAlignment="Top" Width="80"/>

@@ -11,34 +11,29 @@ namespace BBClient.Pages
     /// </summary>
     public partial class AccountChoose : Page
     {
+        BetServiceClient client;
         public AccountChoose()
         {
             InitializeComponent();
+            client = new BetServiceClient();
             loginStatus.Text = "";
         }
-
-        private static bool IsDigit(string text)
-        {
-            if (string.IsNullOrEmpty(text)) return false;
-            var regex = new Regex("[^0-9]+");
-            return !regex.IsMatch(text);
-        }
-
-        private void loginBtn_Click(object sender, RoutedEventArgs e)
+        
+        private void LoginBtnClick(object sender, RoutedEventArgs e)
         {
             loginBtn.IsEnabled = false;
-            if (IsDigit(accCodeTB.Text))
+            var accCode = -1;
+            if (int.TryParse(accCodeTB.Text, out accCode))
             {
-                loginStatus.Text = "";
-                var client = new BetServiceClient();
                 try
                 {
-                    var acc = client.GetAccount(int.Parse(accCodeTB.Text));
-                    if (acc.Code == 0) loginStatus.Text = "Where is no such account.";
+                    client.Open();
+                    var acc = client.GetAccount(accCode);
+                    if (acc.Code == 0) loginStatus.Text = "There is no account with code - " + accCode;
                     else
                     {
-                        loginStatus.Text = "Successfull login";
-                        NavigationService?.Navigate(new AccountManager(acc));
+                        loginStatus.Text = "Succesfull login";
+                        NavigationService?.Navigate(new AccountManager(accCode));
                     }
                 }
                 catch (Exception ex)
@@ -57,25 +52,29 @@ namespace BBClient.Pages
             loginBtn.IsEnabled = true;
         }
 
-        private void accountCreateBtn_Click(object sender, RoutedEventArgs e)
+        private void AccountCreateBtnClick(object sender, RoutedEventArgs e)
         {
             accountCreateBtn.IsEnabled = false;
 
             if (string.IsNullOrEmpty(accNameTB.Text) || string.IsNullOrEmpty(accSurnameTB.Text) ||
                 string.IsNullOrEmpty(accLastNameTB.Text))
             {
-                accountCreationToolTip.Text = "Name, Surname or Lastname cannot be incorrect or empty";
+                accountCreationToolTip.Text = "Name, Surname or Lastname cannot be empty";
             }
             else
             {
-                var client = new BetServiceClient();
                 try
                 {
-                    var acc = client.CreateAccount(accNameTB.Text + " " + accSurnameTB.Text + " " + accLastNameTB.Text);
+                    client.Open();
+                    var acc = client.CreateAccount($"{accNameTB.Text} {accSurnameTB.Text} {accLastNameTB.Text}");
                     if (acc.Code > 0)
                     {
                         accountCreationToolTip.Text = "Account creation succeed";
-                        NavigationService?.Navigate(new AccountManager(acc));
+                        NavigationService?.Navigate(new AccountManager(acc.Code));
+                    }
+                    else
+                    {
+                        MessageBox.Show("Cannot create account");
                     }
                 }
                 catch (Exception ex)

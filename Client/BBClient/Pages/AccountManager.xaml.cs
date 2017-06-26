@@ -11,20 +11,20 @@ namespace BBClient.Pages
     public partial class AccountManager : Page
     {
         private Account account;
-
-        public AccountManager(Account currAccount)
+        private BetServiceClient client;
+        public AccountManager(int accCode)
         {
             InitializeComponent();
-            account = currAccount;
-            UpdateAccountInfo();
+            client = new BetServiceClient();
+            UpdateAccountInfo(accCode);
         }
 
-        private void UpdateAccountInfo()
+        private void UpdateAccountInfo(int code)
         {
-            var client = new BetServiceClient();
             try
             {
-                account = client.GetAccount(account.Code);
+                client.Open();
+                account = client.GetAccount(code);
                 client.Close();
                 accountAmountTB.Text = account.Amount.ToString();
                 accountCodeTB.Text = account.Code.ToString();
@@ -32,6 +32,7 @@ namespace BBClient.Pages
             }
             catch (Exception ex)
             {
+                MessageBox.Show("Connection problem");
             }
             finally
             {
@@ -39,20 +40,21 @@ namespace BBClient.Pages
             }
         }
 
-        private void listUpdateBtn_Click(object sender, RoutedEventArgs e)
+        private void ListUpdateBtnClick(object sender, RoutedEventArgs e)
         {
-            var client = new BetServiceClient();
             try
             {
+                client.Open();
                 var events = client.GetEvents();
                 EventsListView.Items.Clear();
                 foreach (var ev in events)
                 {
-                    EventsListView.Items.Add(new Event {Factor = ev.Factor, Name = ev.Name});
+                    EventsListView.Items.Add(new Event { Factor = ev.Factor, Name = ev.Name });
                 }
             }
             catch (Exception ex)
             {
+                MessageBox.Show("Connection problem");
             }
             finally
             {
@@ -60,12 +62,12 @@ namespace BBClient.Pages
             }
         }
 
-        private void refillBtn_Click(object sender, RoutedEventArgs e)
+        private void RefillBtnClick(object sender, RoutedEventArgs e)
         {
             //payment script should be called here
-            var client = new BetServiceClient();
             try
             {
+                client.Open();
                 int amount;
                 if (int.TryParse(refillTB.Text, out amount) || client.AccountRefill(account.Code, amount))
                 {
@@ -81,7 +83,7 @@ namespace BBClient.Pages
             }
             catch (Exception ex)
             {
-                amountStatus.Text = " connection problem";
+                MessageBox.Show("Connection problem");
             }
             finally
             {
@@ -89,7 +91,7 @@ namespace BBClient.Pages
             }
         }
 
-        private void SimpleBet_Click(object sender, RoutedEventArgs e)
+        private void SimpleBetClick(object sender, RoutedEventArgs e)
         {
             if (EventsListView.SelectedItem == null)
             {
@@ -97,7 +99,7 @@ namespace BBClient.Pages
             }
             else
             {
-                var item = (Event) EventsListView.SelectedItem;
+                var item = (Event)EventsListView.SelectedItem;
                 var results = new Event
                 {
                     Factor = item.Factor,
@@ -116,17 +118,17 @@ namespace BBClient.Pages
                     }
                     else
                     {
-                        var client = new BetServiceClient();
                         try
                         {
+                            client.Open();
                             client.AccountWithdraw(account.Code, betAmount);
-                            client.MakeBet(account.Code, betAmount, BetType.Simple, new[] {results});
+                            client.MakeBet(account.Code, betAmount, BetType.Simple, new[] { results });
                             BetStatus.Content = "Bet Success";
                             BetTextBox.Text = "";
                         }
                         catch (Exception ex)
                         {
-                            BetStatus.Content = "connection problem";
+                            MessageBox.Show("Connection problem");
                         }
                         finally
                         {
@@ -137,11 +139,11 @@ namespace BBClient.Pages
             }
         }
 
-        private void withdrawBtn_Click(object sender, RoutedEventArgs e)
+        private void WithdrawBtnClick(object sender, RoutedEventArgs e)
         {
-            var client = new BetServiceClient();
             try
             {
+                client.Open();
                 int amount;
                 if (int.TryParse(withdrawTB.Text, out amount) || client.AccountWithdraw(account.Code, amount))
                 {
@@ -157,7 +159,7 @@ namespace BBClient.Pages
             }
             catch (Exception ex)
             {
-                amountStatus.Text = "connection problem";
+                MessageBox.Show("Connection problem");
             }
             finally
             {
@@ -165,49 +167,70 @@ namespace BBClient.Pages
             }
         }
 
-        private void updateBtn_Click(object sender, RoutedEventArgs e)
+        private void UpdateBtnClick(object sender, RoutedEventArgs e)
         {
-            UpdateAccountInfo();
+            UpdateAccountInfo(account.Code);
         }
 
-        private void BetUpdateBtn_Click(object sender, RoutedEventArgs e)
+        private void BetUpdateBtnClick(object sender, RoutedEventArgs e)
         {
-            var client = new BetServiceClient();
-            if (!string.IsNullOrEmpty(betCodeTB.Text))
+            try
             {
-                int betCode;
-                if (int.TryParse(betCodeTB.Text, out betCode))
+                client.Open();
+                if (!string.IsNullOrEmpty(betCodeTB.Text))
                 {
-                    var bet = client.GetBet(betCode);
+                    int betCode;
+                    if (int.TryParse(betCodeTB.Text, out betCode))
+                    {
+                        var bet = client.GetBet(betCode);
+                        BetsListView.Items.Clear();
+                        BetsListView.Items.Add(bet);
+                    }
+                }
+                else
+                {
+                    var bets = client.GetBets(account.Code);
                     BetsListView.Items.Clear();
-                    BetsListView.Items.Add(bet);
+                    foreach (var bet in bets)
+                    {
+                        BetsListView.Items.Add(bet);
+                    }
                 }
             }
-            else
+            catch (Exception ex)
             {
-                var bets = client.GetBets(account.Code);
-                BetsListView.Items.Clear();
-
-                foreach (var bet in bets)
-                {
-                    BetsListView.Items.Add(bet);
-                }
+                MessageBox.Show("Connection problem");
+            }
+            finally
+            {
+                client.Close();
             }
         }
 
-        private void EventAddBtn_Click(object sender, RoutedEventArgs e)
+        private void EventAddBtnClick(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrEmpty(EventFactorTB.Text) || string.IsNullOrEmpty(EventNameTB.Text)) return;
             decimal factor;
 
             if (decimal.TryParse(EventFactorTB.Text, out factor))
             {
-                var client = new BetServiceClient();
-                client.AddEvent(EventNameTB.Text, factor);
+                try
+                {
+                    client.Open();
+                    client.AddEvent(EventNameTB.Text, factor);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Connection problem");
+                }
+                finally
+                {
+                    client.Close();
+                }
             }
             EventFactorTB.Text = "";
             EventNameTB.Text = "";
-            listUpdateBtn_Click(sender, e);
+            ListUpdateBtnClick(sender, e);
         }
     }
 }
