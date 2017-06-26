@@ -7,6 +7,15 @@ namespace BBServer
     public class BetService : IBetService
     {
         private static List<Event> line;
+        private List<Event> Lines
+        {
+            get
+            {
+                if (line == null)
+                    InitEvents();
+                return line;
+            }
+        }
 
         public Bet GetBet(int betCode)
         {
@@ -27,13 +36,11 @@ namespace BBServer
         public void AddEvent(string name, decimal factor)
         {
             if (string.IsNullOrEmpty(name) || factor < 0) return;
-            if (line == null) InitEvents();
             line.Add(new Event {Factor = factor, Name = name});
         }
 
         public List<Event> GetEvents()
         {
-            if (line == null) InitEvents();
             return line;
         }
 
@@ -141,16 +148,14 @@ namespace BBServer
         /// </summary>
         private void InitEvents()
         {
-            if (line == null)
-            {
-                line = new List<Event>();
-                var e = new Event {Factor = 1.0m, Name = "Spartak-Dinamo"};
-                line.Add(e);
-                e = new Event {Factor = 1.0m, Name = "Dinamo-Spartak"};
-                line.Add(e);
-                e = new Event {Factor = 1.0m, Name = "Spartak:Dinamo"};
-                line.Add(e);
-            }
+            if (line != null) return;
+            line = new List<Event>();
+            var e = new Event {Factor = 1.0m, Name = "Spartak-Dinamo"};
+            line.Add(e);
+            e = new Event {Factor = 1.0m, Name = "Dinamo-Spartak"};
+            line.Add(e);
+            e = new Event {Factor = 1.0m, Name = "Spartak:Dinamo"};
+            line.Add(e);
         }
     }
 }

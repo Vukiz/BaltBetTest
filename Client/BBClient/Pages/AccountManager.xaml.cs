@@ -69,7 +69,7 @@ namespace BBClient.Pages
             {
                 client.Open();
                 int amount;
-                if (int.TryParse(refillTB.Text, out amount) || client.AccountRefill(account.Code, amount))
+                if (int.TryParse(refillTB.Text, out amount) && client.AccountRefill(account.Code, amount))
                 {
                     account.Amount += amount;
                     accountAmountTB.Text = account.Amount.ToString();
@@ -145,7 +145,7 @@ namespace BBClient.Pages
             {
                 client.Open();
                 int amount;
-                if (int.TryParse(withdrawTB.Text, out amount) || client.AccountWithdraw(account.Code, amount))
+                if (int.TryParse(withdrawTB.Text, out amount) && client.AccountWithdraw(account.Code, amount))
                 {
                     account.Amount -= amount;
                     accountAmountTB.Text = account.Amount.ToString();
