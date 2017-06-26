@@ -55,13 +55,13 @@
         <Button x:Name="SuperExpressBtn" Content="Make Super Express" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left"
                 Margin="262,94,-74,0" VerticalAlignment="Top" Width="112" Height="32" />
         <Label x:Name="BetStatus" Content="Select events you want to play with." Grid.Column="1"
-               HorizontalAlignment="Left" Margin="394,77,-284,-9" VerticalAlignment="Top" Width="190" Grid.Row="1"
-               Height="82" />
+               HorizontalAlignment="Left" Margin="379,61,-284,0" VerticalAlignment="Top" Width="205" Grid.Row="1"
+               Height="59" />
         <TextBox x:Name="BetTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="379,31,-199,0"
                  TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
         <Label x:Name="BetLabel" Content="Your bet" Grid.Column="1" HorizontalAlignment="Left" Margin="379,5,-179,0"
                VerticalAlignment="Top" Width="100" />
-        <ListView x:Name="EventsListView" Grid.Column="1" HorizontalAlignment="Left" Height="152" Margin="379,70,-284,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="205">
+        <ListView x:Name="EventsListView" Grid.Column="1" HorizontalAlignment="Left" Height="152" Margin="379,59,-284,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="205">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Name" Width="100"  DisplayMemberBinding="{Binding Name}"/>
@@ -69,19 +69,27 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <ListView x:Name="BetsListView" HorizontalAlignment="Left" Height="100" Margin="15,31,0,0" Grid.Row="1" VerticalAlignment="Top" Width="410" Grid.ColumnSpan="2">
+        <ListView x:Name="BetsListView" HorizontalAlignment="Left" Height="100" Margin="0,31,0,0" Grid.Row="1" VerticalAlignment="Top" Width="499" Grid.ColumnSpan="2">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Code" Width="100"  DisplayMemberBinding="{Binding Code}"/>
+                    <GridViewColumn Header="Result" Width="100"  DisplayMemberBinding="{Binding Result}"/>
                     <GridViewColumn Header="Amount" Width="100"  DisplayMemberBinding="{Binding Amount}"/>
                     <GridViewColumn Header="WinAmount" Width="100"  DisplayMemberBinding="{Binding WinAmount}"/>
                     <GridViewColumn Header="Date" Width="100"  DisplayMemberBinding="{Binding Date}"/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <TextBlock x:Name="BetsText" HorizontalAlignment="Left" Margin="15,10,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Bets" VerticalAlignment="Top" Width="133"/>
-        <TextBox x:Name="betCodeTB" HorizontalAlignment="Left" Height="18" Margin="130,54,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="86" Grid.Column="1"/>
-        <TextBlock x:Name="codeBet" HorizontalAlignment="Left" Margin="130,33,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Get bet by code" VerticalAlignment="Top" Width="86" Grid.Column="1"/>
-        <Button x:Name="BetUpdateBtn" Content="Update Bets" Grid.Column="1" HorizontalAlignment="Left" Margin="130,111,0,0" Grid.Row="1" VerticalAlignment="Top" Width="86" Click="BetUpdateBtn_Click"/>
+        <TextBlock x:Name="BetsText" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Bets" VerticalAlignment="Top" Width="133"/>
+        <TextBox x:Name="betCodeTB" HorizontalAlignment="Left" Height="18" Margin="204,54,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="86" Grid.Column="1"/>
+        <TextBlock x:Name="codeBet" HorizontalAlignment="Left" Margin="204,33,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Get bet by code" VerticalAlignment="Top" Width="86" Grid.Column="1"/>
+        <Button x:Name="BetUpdateBtn" Content="Update Bets" Grid.Column="1" HorizontalAlignment="Left" Margin="204,111,0,0" Grid.Row="1" VerticalAlignment="Top" Width="86" Click="BetUpdateBtn_Click"/>
+        <Label x:Name="label" Content="First is winner" Grid.Column="1" HorizontalAlignment="Left" Margin="589,102,-389,0" VerticalAlignment="Top" Width="100"/>
+        <Label x:Name="label1" Content="&quot; : &quot; means spare" Grid.Column="1" HorizontalAlignment="Left" Margin="589,132,-389,0" VerticalAlignment="Top" Width="100" Grid.RowSpan="2"/>
+        <Button x:Name="EventAddBtn" Content="Add Event" Grid.Column="1" HorizontalAlignment="Left" Margin="509,159,-284,-29" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="EventAddBtn_Click"/>
+        <TextBox x:Name="EventNameTB" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="364,145,-184,-18" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="EventFactorTB" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="364,173,-184,-46" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="label2" Content="Name" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="279,145,-59,-18" Grid.Row="1" VerticalAlignment="Top" Width="80"/>
+        <Label x:Name="label3" Content="Factor" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="283,173,-59,-46" Grid.Row="1" VerticalAlignment="Top" Width="76"/>
     </Grid>
 </Page>

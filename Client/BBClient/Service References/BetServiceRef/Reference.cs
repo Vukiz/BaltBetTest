@@ -330,6 +330,12 @@ namespace BBClient.BetServiceRef {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetService/GetBets", ReplyAction="http://tempuri.org/IBetService/GetBetsResponse")]
         System.Threading.Tasks.Task<BBClient.BetServiceRef.Bet[]> GetBetsAsync(int accCode);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetService/AddEvent", ReplyAction="http://tempuri.org/IBetService/AddEventResponse")]
+        void AddEvent(string name, decimal factor);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetService/AddEvent", ReplyAction="http://tempuri.org/IBetService/AddEventResponse")]
+        System.Threading.Tasks.Task AddEventAsync(string name, decimal factor);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetService/GetAccountAmount", ReplyAction="http://tempuri.org/IBetService/GetAccountAmountResponse")]
         decimal GetAccountAmount(int accountCode);
         
@@ -428,6 +434,14 @@ namespace BBClient.BetServiceRef {
         
         public System.Threading.Tasks.Task<BBClient.BetServiceRef.Bet[]> GetBetsAsync(int accCode) {
             return base.Channel.GetBetsAsync(accCode);
+        }
+        
+        public void AddEvent(string name, decimal factor) {
+            base.Channel.AddEvent(name, factor);
+        }
+        
+        public System.Threading.Tasks.Task AddEventAsync(string name, decimal factor) {
+            return base.Channel.AddEventAsync(name, factor);
         }
         
         public decimal GetAccountAmount(int accountCode) {

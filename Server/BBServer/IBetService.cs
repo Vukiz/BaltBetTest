@@ -34,6 +34,8 @@ namespace BBServer
         [OperationContract]
         List<Bet> GetBets(int accCode);
 
+        [OperationContract]
+        void AddEvent(string name, decimal factor);
         /// <summary>
         /// returns account amount
         /// </summary>

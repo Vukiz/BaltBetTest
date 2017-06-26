@@ -37,6 +37,14 @@ namespace BBServer
             return result;
         }
 
+        public void AddEvent(string name, decimal factor)
+        {
+            if (string.IsNullOrEmpty(name) || factor < 0) return;
+            if(line == null) InitEvents();
+            line.Add(new Event {Factor = factor,Name = name});
+            
+        }
+
         public List<Event> GetEvents()
         {
             if (line == null) InitEvents();

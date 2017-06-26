@@ -54,12 +54,13 @@ namespace BBClient.Pages
         {
             //payment script should be called here
             var client = new BetServiceClient();
-            var amount = int.Parse(refillTB.Text);
-            if (client.AccountRefill(account.Code, amount))
+            int amount;
+            if (int.TryParse(refillTB.Text,out amount) || client.AccountRefill(account.Code, amount))
             {
                 account.Amount += amount;
                 accountAmountTB.Text = account.Amount.ToString();
                 amountStatus.Text = "Success";
+                refillTB.Text = "";
             }
             else
             {
@@ -86,12 +87,18 @@ namespace BBClient.Pages
             }
             else
             {
-                if (betAmount > account.Amount) BetStatus.Content = "Not Enough money";
-                client.AccountWithdraw(account.Code, betAmount);
-                client.MakeBet(account.Code, betAmount, BetType.Simple, new[] { results });
-                BetStatus.Content = "Bet Success";
+                if (betAmount > account.Amount)
+                {
+                    BetStatus.Content = "Not Enough money";
+                }
+                else
+                {
+                    client.AccountWithdraw(account.Code, betAmount);
+                    client.MakeBet(account.Code, betAmount, BetType.Simple, new[] {results});
+                    BetStatus.Content = "Bet Success";
+                    BetTextBox.Text = "";
+                }
             }
-
             client.Close();
 
         }
@@ -99,12 +106,13 @@ namespace BBClient.Pages
         private void withdrawBtn_Click(object sender, RoutedEventArgs e)
         {
             var client = new BetServiceClient();
-            var amount = int.Parse(withdrawTB.Text);
-            if (client.AccountWithdraw(account.Code, amount))
+            int amount;
+            if (int.TryParse(withdrawTB.Text, out amount) || client.AccountWithdraw(account.Code, amount))
             {
                 account.Amount -= amount;
                 accountAmountTB.Text = account.Amount.ToString();
                 amountStatus.Text = "Success";
+                withdrawTB.Text = "";
             }
             else
             {
@@ -123,17 +131,39 @@ namespace BBClient.Pages
             var client = new BetServiceClient();
             if (!string.IsNullOrEmpty(betCodeTB.Text))
             {
-
+                int betCode;
+                if (int.TryParse(betCodeTB.Text, out betCode))
+                {
+                    var bet = client.GetBet(betCode);
+                    BetsListView.Items.Clear();
+                    BetsListView.Items.Add(bet);
+                }
             }
             else
             {
-               /* var bets = client.GetBets(account.Code);
+                var bets = client.GetBets(account.Code);
                 BetsListView.Items.Clear();
+                
                 foreach (var bet in bets)
                 {
                     BetsListView.Items.Add(bet);
-                }*/
+                }
             }
+        }
+
+        private void EventAddBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(EventFactorTB.Text) || string.IsNullOrEmpty(EventNameTB.Text)) return;
+            decimal factor;
+
+            if (decimal.TryParse(EventFactorTB.Text, out factor))
+            {
+                var client = new BetServiceClient();
+                client.AddEvent(EventNameTB.Text, factor);
+            }
+            EventFactorTB.Text = "";
+            EventNameTB.Text = "";
+            listUpdateBtn_Click(sender,e);
         }
     }
 }
