@@ -1,32 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Data.SqlTypes;
 using System.Linq;
-using System.Runtime.Serialization;
-using System.ServiceModel;
-using System.ServiceModel.Web;
-using System.Text;
 
 namespace BBServer
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "BetService" in code, svc and config file together.
-    // NOTE: In order to launch WCF Test Client for testing this service, please select BetService.svc or BetService.svc.cs at the Solution Explorer and start debugging.
     public class BetService : IBetService
     {
         private static List<Event> line;
-        public string TestConnection()
-        {
-            return "OK";
-        }
 
         public Bet GetBet(int betCode)
         {
             var db = new LingToSqlAccountDataContext();
-            var query = from bet in db.Bets where bet.Code == betCode  select bet; 
-            if(!query.Any()) return new Bet();
-            return query.First();
-        } 
+            var query = from bet in db.Bets where bet.Code == betCode select bet;
+            return !query.Any() ? new Bet() : query.First();
+        }
 
         public List<Bet> GetBets(int accCode)
         {
@@ -40,9 +27,8 @@ namespace BBServer
         public void AddEvent(string name, decimal factor)
         {
             if (string.IsNullOrEmpty(name) || factor < 0) return;
-            if(line == null) InitEvents();
-            line.Add(new Event {Factor = factor,Name = name});
-            
+            if (line == null) InitEvents();
+            line.Add(new Event {Factor = factor, Name = name});
         }
 
         public List<Event> GetEvents()
@@ -50,6 +36,7 @@ namespace BBServer
             if (line == null) InitEvents();
             return line;
         }
+
         public void MakeBet(int accCode, decimal amount, BetType type, List<Event> results)
         {
             var db = new LingToSqlAccountDataContext();
@@ -57,7 +44,7 @@ namespace BBServer
             {
                 Amount = amount,
                 BetDate = DateTime.Now,
-                Account_Code= accCode
+                Account_Code = accCode
             };
             switch (type)
             {
@@ -90,7 +77,7 @@ namespace BBServer
         }
 
         /// <summary>
-        /// increases accountCode amount 
+        ///     increases accountCode amount
         /// </summary>
         /// <param name="accountCode"> [1..Users.count]</param>
         /// <param name="amount">[0 50000]</param>
@@ -107,7 +94,7 @@ namespace BBServer
         }
 
         /// <summary>
-        /// Creates account with given fio and gives him autoincremented code and 0 amount of money
+        ///     Creates account with given fio and gives him autoincremented code and 0 amount of money
         /// </summary>
         /// <param name="fio">name, surname and lastname in one string</param>
         /// <returns></returns>
@@ -128,13 +115,12 @@ namespace BBServer
         {
             var db = new LingToSqlAccountDataContext();
             var query = from account in db.Accounts where account.Code == code select account;
-            if (!query.Any()) return new Account();
-            return query.First();
+            return !query.Any() ? new Account() : query.First();
         }
 
         private static decimal SetSimpleWin(decimal amount, Event currentEvent)
         {
-            var result = amount * line.Find(e => e.Name == currentEvent.Name).Factor;
+            var result = amount*line.Find(e => e.Name == currentEvent.Name).Factor;
             return result;
         }
 
@@ -149,19 +135,20 @@ namespace BBServer
             decimal result = 0;
             return result;
         }
+
         /// <summary>
-        /// line is hardcoded
+        ///     line is hardcoded
         /// </summary>
         private void InitEvents()
         {
             if (line == null)
             {
                 line = new List<Event>();
-                var e = new Event { Factor = 1.0m, Name = "Spartak-Dinamo" };
+                var e = new Event {Factor = 1.0m, Name = "Spartak-Dinamo"};
                 line.Add(e);
-                e = new Event { Factor = 1.0m, Name = "Dinamo-Spartak" };
+                e = new Event {Factor = 1.0m, Name = "Dinamo-Spartak"};
                 line.Add(e);
-                e = new Event { Factor = 1.0m, Name = "Spartak:Dinamo" };
+                e = new Event {Factor = 1.0m, Name = "Spartak:Dinamo"};
                 line.Add(e);
             }
         }

@@ -1,27 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlTypes;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.ServiceModel;
-using System.ServiceModel.Web;
-using System.Text;
 
 namespace BBServer
 {
     [ServiceContract]
     public interface IBetService
     {
-        [OperationContract]
-        string TestConnection();
         /// <summary>
-        /// returns account by code
+        ///     returns account by code
         /// </summary>
         /// <param name="code"></param>
         /// <returns></returns>
         [OperationContract]
         Account GetAccount(int code);
 
+        /// <summary>
+        ///     returns static list of events
+        /// </summary>
+        /// <returns></returns>
         [OperationContract]
         List<Event> GetEvents();
 
@@ -36,8 +33,9 @@ namespace BBServer
 
         [OperationContract]
         void AddEvent(string name, decimal factor);
+
         /// <summary>
-        /// returns account amount
+        ///     returns account amount
         /// </summary>
         /// <param name="accountCode"></param>
         /// <returns></returns>
@@ -45,8 +43,8 @@ namespace BBServer
         decimal GetAccountAmount(int accountCode);
 
         /// <summary>
-        /// only substracts money from account.
-        /// money should be given in another service
+        ///     only substracts money from account.
+        ///     money should be given in another service
         /// </summary>
         /// <param name="accountCode"></param>
         /// <param name="amount"></param>
@@ -55,7 +53,7 @@ namespace BBServer
         bool AccountWithdraw(int accountCode, int amount);
 
         /// <summary>
-        /// refills account amount and returns true if success
+        ///     refills account amount and returns true if success
         /// </summary>
         /// <param name="accountCode"></param>
         /// <param name="amount"></param>
@@ -71,29 +69,17 @@ namespace BBServer
     [DataContract]
     public class Event
     {
-
         [DataMember]
         public decimal Factor { get; set; }
+
         [DataMember]
         public string Name { get; set; }
-    }
-    public enum GameResult
-    {
-        [EnumMember]
-        Win = 1,
-        [EnumMember]
-        Spare = 0,
-        [EnumMember]
-        Lose = -1
     }
 
     public enum BetType
     {
-        [EnumMember]
-        Simple,
-        [EnumMember]
-        System,
-        [EnumMember]
-        SuperExpress
+        [EnumMember] Simple,
+        [EnumMember] System,
+        [EnumMember] SuperExpress
     }
 }

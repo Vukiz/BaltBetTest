@@ -1,19 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.ServiceModel;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using BBClient.BetServiceRef;
 
 namespace BBClient.Pages
@@ -28,6 +16,7 @@ namespace BBClient.Pages
             InitializeComponent();
             loginStatus.Text = "";
         }
+
         private static bool IsDigit(string text)
         {
             if (string.IsNullOrEmpty(text)) return false;
@@ -100,6 +89,5 @@ namespace BBClient.Pages
             }
             accountCreateBtn.IsEnabled = true;
         }
-
     }
 }

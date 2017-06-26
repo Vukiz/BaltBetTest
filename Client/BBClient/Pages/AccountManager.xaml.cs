@@ -1,17 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using BBClient.BetServiceRef;
 
 namespace BBClient.Pages
@@ -22,6 +11,7 @@ namespace BBClient.Pages
     public partial class AccountManager : Page
     {
         private Account account;
+
         public AccountManager(Account currAccount)
         {
             InitializeComponent();
@@ -31,7 +21,6 @@ namespace BBClient.Pages
 
         private void UpdateAccountInfo()
         {
-
             var client = new BetServiceClient();
             try
             {
@@ -43,7 +32,6 @@ namespace BBClient.Pages
             }
             catch (Exception ex)
             {
-
             }
             finally
             {
@@ -65,13 +53,13 @@ namespace BBClient.Pages
             }
             catch (Exception ex)
             {
-
             }
             finally
             {
                 client.Close();
             }
         }
+
         private void refillBtn_Click(object sender, RoutedEventArgs e)
         {
             //payment script should be called here
@@ -109,10 +97,7 @@ namespace BBClient.Pages
             }
             else
             {
-
                 var item = (Event) EventsListView.SelectedItem;
-
-
                 var results = new Event
                 {
                     Factor = item.Factor,
@@ -149,7 +134,6 @@ namespace BBClient.Pages
                         }
                     }
                 }
-
             }
         }
 
@@ -203,7 +187,7 @@ namespace BBClient.Pages
             {
                 var bets = client.GetBets(account.Code);
                 BetsListView.Items.Clear();
-                
+
                 foreach (var bet in bets)
                 {
                     BetsListView.Items.Add(bet);
@@ -223,7 +207,7 @@ namespace BBClient.Pages
             }
             EventFactorTB.Text = "";
             EventNameTB.Text = "";
-            listUpdateBtn_Click(sender,e);
+            listUpdateBtn_Click(sender, e);
         }
     }
 }
