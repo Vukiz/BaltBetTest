@@ -33,92 +33,152 @@ namespace BBClient.Pages
         {
 
             var client = new BetServiceClient();
-            account = client.GetAccount(account.Code);
-            client.Close();
-            accountAmountTB.Text = account.Amount.ToString();
-            accountCodeTB.Text = account.Code.ToString();
-            accountFIOTB.Text = account.FIO;
+            try
+            {
+                account = client.GetAccount(account.Code);
+                client.Close();
+                accountAmountTB.Text = account.Amount.ToString();
+                accountCodeTB.Text = account.Code.ToString();
+                accountFIOTB.Text = account.FIO;
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                client.Close();
+            }
         }
 
         private void listUpdateBtn_Click(object sender, RoutedEventArgs e)
         {
             var client = new BetServiceClient();
-            EventsListView.Items.Clear();
-            foreach (var ev in client.GetEvents())
+            try
             {
-                EventsListView.Items.Add(new Event { Factor = ev.Factor, Name = ev.Name });
+                var events = client.GetEvents();
+                EventsListView.Items.Clear();
+                foreach (var ev in events)
+                {
+                    EventsListView.Items.Add(new Event {Factor = ev.Factor, Name = ev.Name});
+                }
             }
-            client.Close();
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                client.Close();
+            }
         }
         private void refillBtn_Click(object sender, RoutedEventArgs e)
         {
             //payment script should be called here
             var client = new BetServiceClient();
-            int amount;
-            if (int.TryParse(refillTB.Text,out amount) || client.AccountRefill(account.Code, amount))
+            try
             {
-                account.Amount += amount;
-                accountAmountTB.Text = account.Amount.ToString();
-                amountStatus.Text = "Success";
-                refillTB.Text = "";
+                int amount;
+                if (int.TryParse(refillTB.Text, out amount) || client.AccountRefill(account.Code, amount))
+                {
+                    account.Amount += amount;
+                    accountAmountTB.Text = account.Amount.ToString();
+                    amountStatus.Text = "Success";
+                    refillTB.Text = "";
+                }
+                else
+                {
+                    amountStatus.Text = "Account cannot be refilled";
+                }
             }
-            else
+            catch (Exception ex)
             {
-                amountStatus.Text = "Account cannot be refilled";
+                amountStatus.Text = " connection problem";
             }
-            client.Close();
+            finally
+            {
+                client.Close();
+            }
         }
 
         private void SimpleBet_Click(object sender, RoutedEventArgs e)
         {
-            var client = new BetServiceClient();
-            if (EventsListView.SelectedItem == null) BetStatus.Content = "Select event to play with";
-            var item = (Event)EventsListView.SelectedItem;
-
-            var results = new Event
+            if (EventsListView.SelectedItem == null)
             {
-                Factor = item.Factor,
-                Name = item.Name
-            };
-            int betAmount;
-            if (!int.TryParse(BetTextBox.Text, out betAmount))
-            {
-                BetStatus.Content = "Wrong bet";
+                BetStatus.Content = "Select event to play with";
             }
             else
             {
-                if (betAmount > account.Amount)
+
+                var item = (Event) EventsListView.SelectedItem;
+
+
+                var results = new Event
                 {
-                    BetStatus.Content = "Not Enough money";
+                    Factor = item.Factor,
+                    Name = item.Name
+                };
+                int betAmount;
+                if (!int.TryParse(BetTextBox.Text, out betAmount))
+                {
+                    BetStatus.Content = "Wrong bet";
                 }
                 else
                 {
-                    client.AccountWithdraw(account.Code, betAmount);
-                    client.MakeBet(account.Code, betAmount, BetType.Simple, new[] {results});
-                    BetStatus.Content = "Bet Success";
-                    BetTextBox.Text = "";
+                    if (betAmount > account.Amount)
+                    {
+                        BetStatus.Content = "Not Enough money";
+                    }
+                    else
+                    {
+                        var client = new BetServiceClient();
+                        try
+                        {
+                            client.AccountWithdraw(account.Code, betAmount);
+                            client.MakeBet(account.Code, betAmount, BetType.Simple, new[] {results});
+                            BetStatus.Content = "Bet Success";
+                            BetTextBox.Text = "";
+                        }
+                        catch (Exception ex)
+                        {
+                            BetStatus.Content = "connection problem";
+                        }
+                        finally
+                        {
+                            client.Close();
+                        }
+                    }
                 }
-            }
-            client.Close();
 
+            }
         }
 
         private void withdrawBtn_Click(object sender, RoutedEventArgs e)
         {
             var client = new BetServiceClient();
-            int amount;
-            if (int.TryParse(withdrawTB.Text, out amount) || client.AccountWithdraw(account.Code, amount))
+            try
             {
-                account.Amount -= amount;
-                accountAmountTB.Text = account.Amount.ToString();
-                amountStatus.Text = "Success";
-                withdrawTB.Text = "";
+                int amount;
+                if (int.TryParse(withdrawTB.Text, out amount) || client.AccountWithdraw(account.Code, amount))
+                {
+                    account.Amount -= amount;
+                    accountAmountTB.Text = account.Amount.ToString();
+                    amountStatus.Text = "Success";
+                    withdrawTB.Text = "";
+                }
+                else
+                {
+                    amountStatus.Text = "Cannot withdraw from account";
+                }
             }
-            else
+            catch (Exception ex)
             {
-                amountStatus.Text = "Cannot withdraw from account";
+                amountStatus.Text = "connection problem";
             }
-            client.Close();
+            finally
+            {
+                client.Close();
+            }
         }
 
         private void updateBtn_Click(object sender, RoutedEventArgs e)
