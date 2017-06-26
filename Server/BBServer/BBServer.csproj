@@ -101,10 +101,10 @@
       <DependentUpon>BetService.svc</DependentUpon>
     </Compile>
     <Compile Include="IBetService.cs" />
-    <Compile Include="LingToSql.designer.cs">
+    <Compile Include="DataContextBB.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>LingToSql.dbml</DependentUpon>
+      <DependentUpon>DataContextBB.dbml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -116,9 +116,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="web.config" />
-    <Content Include="LingToSql.dbml">
+    <Content Include="DataContextBB.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>LingToSql.designer.cs</LastGenOutput>
+      <LastGenOutput>DataContextBB.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
     <None Include="web.Debug.config">
@@ -132,8 +132,8 @@
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="LingToSql.dbml.layout">
-      <DependentUpon>LingToSql.dbml</DependentUpon>
+    <None Include="DataContextBB.dbml.layout">
+      <DependentUpon>DataContextBB.dbml</DependentUpon>
     </None>
   </ItemGroup>
   <PropertyGroup>
