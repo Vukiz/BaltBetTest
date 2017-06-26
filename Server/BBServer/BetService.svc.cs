@@ -7,6 +7,12 @@ namespace BBServer
     public class BetService : IBetService
     {
         private static List<Event> line;
+        private LingToSqlAccountDataContext db;
+
+        public BetService()
+        {
+            db = new LingToSqlAccountDataContext();
+        }
         private List<Event> Lines
         {
             get
@@ -19,34 +25,35 @@ namespace BBServer
 
         public Bet GetBet(int betCode)
         {
-            var db = new LingToSqlAccountDataContext();
-            var query = from bet in db.Bets where bet.Code == betCode select bet;
-            return !query.Any() ? new Bet() : query.First();
+            try
+            {
+                var bet = db.Bets.Single(b => b.Code == betCode);
+                return bet;
+            }
+            catch (Exception ex)
+            {
+                return new Bet();
+            }
         }
 
         public List<Bet> GetBets(int accCode)
         {
-            var result = new List<Bet>();
-            var db = new LingToSqlAccountDataContext();
-            var query = from bet in db.Bets where bet.Account_Code == accCode select bet;
-            result.AddRange(query);
-            return result;
+            return db.Bets.Where(bet => bet.Account_Code == accCode).ToList();
         }
 
         public void AddEvent(string name, decimal factor)
         {
             if (string.IsNullOrEmpty(name) || factor < 0) return;
-            line.Add(new Event {Factor = factor, Name = name});
+            Lines.Add(new Event {Factor = factor, Name = name});
         }
 
         public List<Event> GetEvents()
         {
-            return line;
+            return Lines;
         }
 
         public void MakeBet(int accCode, decimal amount, BetType type, List<Event> results)
         {
-            var db = new LingToSqlAccountDataContext();
             var bet = new Bet
             {
                 Amount = amount,
@@ -75,7 +82,6 @@ namespace BBServer
 
         public bool AccountWithdraw(int accountCode, int amount)
         {
-            var db = new LingToSqlAccountDataContext();
             var currentAcc = db.Accounts.Single(acc => acc.Code == accountCode);
             if (currentAcc.Amount == 0 || currentAcc.Amount < amount) return false;
             currentAcc.Amount -= amount;
@@ -91,7 +97,6 @@ namespace BBServer
         /// <returns></returns>
         public bool AccountRefill(int accountCode, int amount)
         {
-            var db = new LingToSqlAccountDataContext();
             var currentAcc = db.Accounts.Single(acc => acc.Code == accountCode);
             if (currentAcc.Amount > 50000) return false;
             if (amount <= 0 || amount + currentAcc.Amount > 50000) return false;
@@ -107,7 +112,6 @@ namespace BBServer
         /// <returns></returns>
         public Account CreateAccount(string fio)
         {
-            var db = new LingToSqlAccountDataContext();
             var acc = new Account
             {
                 FIO = fio,
@@ -120,14 +124,13 @@ namespace BBServer
 
         public Account GetAccount(int code)
         {
-            var db = new LingToSqlAccountDataContext();
             var query = from account in db.Accounts where account.Code == code select account;
             return !query.Any() ? new Account() : query.First();
         }
 
-        private static decimal SetSimpleWin(decimal amount, Event currentEvent)
+        private decimal SetSimpleWin(decimal amount, Event currentEvent)
         {
-            var result = amount*line.Find(e => e.Name == currentEvent.Name).Factor;
+            var result = amount*Lines.Find(e => e.Name == currentEvent.Name).Factor;
             return result;
         }
 

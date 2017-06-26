@@ -11,16 +11,15 @@ namespace BBClient.Pages
     public partial class AccountManager : Page
     {
         private Account account;
-        private BetServiceClient client;
         public AccountManager(int accCode)
         {
             InitializeComponent();
-            client = new BetServiceClient();
             UpdateAccountInfo(accCode);
         }
 
         private void UpdateAccountInfo(int code)
         {
+            var client = new BetServiceClient();
             try
             {
                 client.Open();
@@ -42,6 +41,7 @@ namespace BBClient.Pages
 
         private void ListUpdateBtnClick(object sender, RoutedEventArgs e)
         {
+            var client = new BetServiceClient();
             try
             {
                 client.Open();
@@ -65,6 +65,7 @@ namespace BBClient.Pages
         private void RefillBtnClick(object sender, RoutedEventArgs e)
         {
             //payment script should be called here
+            var client = new BetServiceClient();
             try
             {
                 client.Open();
@@ -118,6 +119,7 @@ namespace BBClient.Pages
                     }
                     else
                     {
+                        var client = new BetServiceClient();
                         try
                         {
                             client.Open();
@@ -141,6 +143,7 @@ namespace BBClient.Pages
 
         private void WithdrawBtnClick(object sender, RoutedEventArgs e)
         {
+            var client = new BetServiceClient();
             try
             {
                 client.Open();
@@ -174,6 +177,7 @@ namespace BBClient.Pages
 
         private void BetUpdateBtnClick(object sender, RoutedEventArgs e)
         {
+            var client = new BetServiceClient();
             try
             {
                 client.Open();
@@ -214,6 +218,7 @@ namespace BBClient.Pages
 
             if (decimal.TryParse(EventFactorTB.Text, out factor))
             {
+                var client = new BetServiceClient();
                 try
                 {
                     client.Open();

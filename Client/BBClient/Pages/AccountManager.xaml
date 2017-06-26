@@ -51,9 +51,9 @@
         <Button x:Name="simpleBetBtn" Click="SimpleBetClick" Content="Make Simple Bet" Grid.Column="1"
                 HorizontalAlignment="Left" Margin="262,10,-74,0" VerticalAlignment="Top" Width="112" Height="34" />
         <Button x:Name="systemBetBtn" Content="Make System Bet" Grid.Column="1" HorizontalAlignment="Left"
-                Margin="262,51,-74,0" VerticalAlignment="Top" Width="112" Height="34" />
+                Margin="262,51,-74,0" VerticalAlignment="Top" Width="112" Height="34" IsEnabled="False" />
         <Button x:Name="SuperExpressBtn" Content="Make Super Express" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left"
-                Margin="262,94,-74,0" VerticalAlignment="Top" Width="112" Height="32" />
+                Margin="262,94,-74,0" VerticalAlignment="Top" Width="112" Height="32" IsEnabled="False" />
         <Label x:Name="BetStatus" Content="Select events you want to play with." Grid.Column="1"
                HorizontalAlignment="Left" Margin="379,61,-284,0" VerticalAlignment="Top" Width="205" Grid.Row="1"
                Height="59" />
