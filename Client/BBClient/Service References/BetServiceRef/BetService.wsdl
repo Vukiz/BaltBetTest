@@ -7,12 +7,6 @@
       <xsd:import schemaLocation="http://localhost:3651/Server/BetService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/BBServer" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="IBetService_TestConnection_InputMessage">
-    <wsdl:part name="parameters" element="tns:TestConnection" />
-  </wsdl:message>
-  <wsdl:message name="IBetService_TestConnection_OutputMessage">
-    <wsdl:part name="parameters" element="tns:TestConnectionResponse" />
-  </wsdl:message>
   <wsdl:message name="IBetService_GetAccount_InputMessage">
     <wsdl:part name="parameters" element="tns:GetAccount" />
   </wsdl:message>
@@ -74,10 +68,6 @@
     <wsdl:part name="parameters" element="tns:CreateAccountResponse" />
   </wsdl:message>
   <wsdl:portType name="IBetService">
-    <wsdl:operation name="TestConnection">
-      <wsdl:input wsaw:Action="http://tempuri.org/IBetService/TestConnection" message="tns:IBetService_TestConnection_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IBetService/TestConnectionResponse" message="tns:IBetService_TestConnection_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="GetAccount">
       <wsdl:input wsaw:Action="http://tempuri.org/IBetService/GetAccount" message="tns:IBetService_GetAccount_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IBetService/GetAccountResponse" message="tns:IBetService_GetAccount_OutputMessage" />
@@ -121,15 +111,6 @@
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IBetService" type="tns:IBetService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="TestConnection">
-      <soap:operation soapAction="http://tempuri.org/IBetService/TestConnection" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="GetAccount">
       <soap:operation soapAction="http://tempuri.org/IBetService/GetAccount" style="document" />
       <wsdl:input>

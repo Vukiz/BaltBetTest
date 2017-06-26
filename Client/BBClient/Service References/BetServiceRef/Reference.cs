@@ -294,12 +294,6 @@ namespace BBClient.BetServiceRef {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="BetServiceRef.IBetService")]
     public interface IBetService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetService/TestConnection", ReplyAction="http://tempuri.org/IBetService/TestConnectionResponse")]
-        string TestConnection();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetService/TestConnection", ReplyAction="http://tempuri.org/IBetService/TestConnectionResponse")]
-        System.Threading.Tasks.Task<string> TestConnectionAsync();
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetService/GetAccount", ReplyAction="http://tempuri.org/IBetService/GetAccountResponse")]
         BBClient.BetServiceRef.Account GetAccount(int code);
         
@@ -386,14 +380,6 @@ namespace BBClient.BetServiceRef {
         
         public BetServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
-        }
-        
-        public string TestConnection() {
-            return base.Channel.TestConnection();
-        }
-        
-        public System.Threading.Tasks.Task<string> TestConnectionAsync() {
-            return base.Channel.TestConnectionAsync();
         }
         
         public BBClient.BetServiceRef.Account GetAccount(int code) {
