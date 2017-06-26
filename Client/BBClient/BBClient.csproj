@@ -99,6 +99,9 @@
     <None Include="Service References\BetServiceRef\BBClient.BetServiceRef.Account.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\BetServiceRef\BBClient.BetServiceRef.Bet.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\BetServiceRef\BBClient.BetServiceRef.Event.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

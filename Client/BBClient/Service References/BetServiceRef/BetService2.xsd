@@ -3,30 +3,11 @@
   <xs:complexType name="Account">
     <xs:sequence>
       <xs:element minOccurs="0" name="Amount" type="xs:decimal" />
-      <xs:element minOccurs="0" name="Bets" nillable="true" type="tns:ArrayOfBet" />
       <xs:element minOccurs="0" name="Code" type="xs:int" />
       <xs:element minOccurs="0" name="FIO" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Account" nillable="true" type="tns:Account" />
-  <xs:complexType name="ArrayOfBet">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Bet" nillable="true" type="tns:Bet" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfBet" nillable="true" type="tns:ArrayOfBet" />
-  <xs:complexType name="Bet">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Account" nillable="true" type="tns:Account" />
-      <xs:element minOccurs="0" name="Account_Code" type="xs:int" />
-      <xs:element minOccurs="0" name="Amount" type="xs:decimal" />
-      <xs:element minOccurs="0" name="BetDate" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="Code" type="xs:int" />
-      <xs:element minOccurs="0" name="Results" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Win_Amount" type="xs:decimal" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Bet" nillable="true" type="tns:Bet" />
   <xs:complexType name="ArrayOfEvent">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Event" nillable="true" type="tns:Event" />
@@ -48,4 +29,21 @@
     </xs:restriction>
   </xs:simpleType>
   <xs:element name="BetType" nillable="true" type="tns:BetType" />
+  <xs:complexType name="Bet">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Account_Code" type="xs:int" />
+      <xs:element minOccurs="0" name="Amount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="BetDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Code" type="xs:int" />
+      <xs:element minOccurs="0" name="Results" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Win_Amount" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Bet" nillable="true" type="tns:Bet" />
+  <xs:complexType name="ArrayOfBet">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Bet" nillable="true" type="tns:Bet" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBet" nillable="true" type="tns:ArrayOfBet" />
 </xs:schema>

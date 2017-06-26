@@ -26,9 +26,6 @@ namespace BBClient.BetServiceRef {
         private decimal AmountField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private BBClient.BetServiceRef.Bet[] BetsField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int CodeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -53,19 +50,6 @@ namespace BBClient.BetServiceRef {
                 if ((this.AmountField.Equals(value) != true)) {
                     this.AmountField = value;
                     this.RaisePropertyChanged("Amount");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public BBClient.BetServiceRef.Bet[] Bets {
-            get {
-                return this.BetsField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.BetsField, value) != true)) {
-                    this.BetsField = value;
-                    this.RaisePropertyChanged("Bets");
                 }
             }
         }
@@ -108,15 +92,87 @@ namespace BBClient.BetServiceRef {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Event", Namespace="http://schemas.datacontract.org/2004/07/BBServer")]
+    [System.SerializableAttribute()]
+    public partial class Event : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal FactorField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal Factor {
+            get {
+                return this.FactorField;
+            }
+            set {
+                if ((this.FactorField.Equals(value) != true)) {
+                    this.FactorField = value;
+                    this.RaisePropertyChanged("Factor");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="BetType", Namespace="http://schemas.datacontract.org/2004/07/BBServer")]
+    public enum BetType : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Simple = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        System = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        SuperExpress = 2,
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Bet", Namespace="http://schemas.datacontract.org/2004/07/BBServer")]
     [System.SerializableAttribute()]
     public partial class Bet : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private BBClient.BetServiceRef.Account AccountField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int Account_CodeField;
@@ -143,19 +199,6 @@ namespace BBClient.BetServiceRef {
             }
             set {
                 this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public BBClient.BetServiceRef.Account Account {
-            get {
-                return this.AccountField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.AccountField, value) != true)) {
-                    this.AccountField = value;
-                    this.RaisePropertyChanged("Account");
-                }
             }
         }
         
@@ -247,81 +290,6 @@ namespace BBClient.BetServiceRef {
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Event", Namespace="http://schemas.datacontract.org/2004/07/BBServer")]
-    [System.SerializableAttribute()]
-    public partial class Event : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private decimal FactorField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NameField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public decimal Factor {
-            get {
-                return this.FactorField;
-            }
-            set {
-                if ((this.FactorField.Equals(value) != true)) {
-                    this.FactorField = value;
-                    this.RaisePropertyChanged("Factor");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Name {
-            get {
-                return this.NameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NameField, value) != true)) {
-                    this.NameField = value;
-                    this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="BetType", Namespace="http://schemas.datacontract.org/2004/07/BBServer")]
-    public enum BetType : int {
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Simple = 0,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        System = 1,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        SuperExpress = 2,
-    }
-    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="BetServiceRef.IBetService")]
     public interface IBetService {
@@ -349,6 +317,18 @@ namespace BBClient.BetServiceRef {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetService/MakeBet", ReplyAction="http://tempuri.org/IBetService/MakeBetResponse")]
         System.Threading.Tasks.Task MakeBetAsync(int accCode, decimal amount, BBClient.BetServiceRef.BetType type, BBClient.BetServiceRef.Event[] results);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetService/GetBet", ReplyAction="http://tempuri.org/IBetService/GetBetResponse")]
+        BBClient.BetServiceRef.Bet GetBet(int betCode);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetService/GetBet", ReplyAction="http://tempuri.org/IBetService/GetBetResponse")]
+        System.Threading.Tasks.Task<BBClient.BetServiceRef.Bet> GetBetAsync(int betCode);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetService/GetBets", ReplyAction="http://tempuri.org/IBetService/GetBetsResponse")]
+        BBClient.BetServiceRef.Bet[] GetBets(int accCode);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetService/GetBets", ReplyAction="http://tempuri.org/IBetService/GetBetsResponse")]
+        System.Threading.Tasks.Task<BBClient.BetServiceRef.Bet[]> GetBetsAsync(int accCode);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetService/GetAccountAmount", ReplyAction="http://tempuri.org/IBetService/GetAccountAmountResponse")]
         decimal GetAccountAmount(int accountCode);
@@ -432,6 +412,22 @@ namespace BBClient.BetServiceRef {
         
         public System.Threading.Tasks.Task MakeBetAsync(int accCode, decimal amount, BBClient.BetServiceRef.BetType type, BBClient.BetServiceRef.Event[] results) {
             return base.Channel.MakeBetAsync(accCode, amount, type, results);
+        }
+        
+        public BBClient.BetServiceRef.Bet GetBet(int betCode) {
+            return base.Channel.GetBet(betCode);
+        }
+        
+        public System.Threading.Tasks.Task<BBClient.BetServiceRef.Bet> GetBetAsync(int betCode) {
+            return base.Channel.GetBetAsync(betCode);
+        }
+        
+        public BBClient.BetServiceRef.Bet[] GetBets(int accCode) {
+            return base.Channel.GetBets(accCode);
+        }
+        
+        public System.Threading.Tasks.Task<BBClient.BetServiceRef.Bet[]> GetBetsAsync(int accCode) {
+            return base.Channel.GetBetsAsync(accCode);
         }
         
         public decimal GetAccountAmount(int accountCode) {

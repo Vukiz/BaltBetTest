@@ -14,30 +14,47 @@ namespace BBServer
     // NOTE: In order to launch WCF Test Client for testing this service, please select BetService.svc or BetService.svc.cs at the Solution Explorer and start debugging.
     public class BetService : IBetService
     {
-        private List<Event> Line;
+        private static List<Event> line;
         public string TestConnection()
         {
             return "OK";
         }
 
+        public Bet GetBet(int betCode)
+        {
+            var db = new LingToSqlAccountDataContext();
+            var query = from bet in db.Bets where bet.Code == betCode  select bet; 
+            if(!query.Any()) return new Bet();
+            return query.First();
+        } 
+
+        public List<Bet> GetBets(int accCode)
+        {
+            var result = new List<Bet>();
+            var db = new LingToSqlAccountDataContext();
+            var query = from bet in db.Bets where bet.Account_Code == accCode select bet;
+            result.AddRange(query);
+            return result;
+        }
+
         public List<Event> GetEvents()
         {
-            if(Line == null) InitEvents();
-            return Line;
+            if (line == null) InitEvents();
+            return line;
         }
-        public void MakeBet(int accCode, decimal amount, BetType type, List<Event> results )
+        public void MakeBet(int accCode, decimal amount, BetType type, List<Event> results)
         {
             var db = new LingToSqlAccountDataContext();
             var bet = new Bet
             {
                 Amount = amount,
                 BetDate = DateTime.Now,
-                Account_Code = accCode
+                Account_Code= accCode
             };
             switch (type)
             {
                 case BetType.Simple:
-                    bet.Amount = SetSimpleWin(amount,results.First());
+                    bet.Win_Amount = SetSimpleWin(amount, results.First());
                     bet.Results = results.First().Name;
                     break;
                 case BetType.System:
@@ -91,7 +108,8 @@ namespace BBServer
             var db = new LingToSqlAccountDataContext();
             var acc = new Account
             {
-                FIO = fio, Amount = 0
+                FIO = fio,
+                Amount = 0
             };
             db.Accounts.InsertOnSubmit(acc);
             db.SubmitChanges();
@@ -106,9 +124,9 @@ namespace BBServer
             return query.First();
         }
 
-        private decimal SetSimpleWin(decimal amount, Event currentEvent)
+        private static decimal SetSimpleWin(decimal amount, Event currentEvent)
         {
-            var result = amount * Line.Find(e => e.Equals(currentEvent)).Factor;
+            var result = amount * line.Find(e => e.Name == currentEvent.Name).Factor;
             return result;
         }
 
@@ -124,19 +142,19 @@ namespace BBServer
             return result;
         }
         /// <summary>
-        /// Line is hardcoded
+        /// line is hardcoded
         /// </summary>
         private void InitEvents()
         {
-            if (Line == null)
+            if (line == null)
             {
-                Line = new List<Event>();
-                var e = new Event {Factor = 1.0m,Name = "Spartak-Dinamo"};
-                Line.Add(e);
+                line = new List<Event>();
+                var e = new Event { Factor = 1.0m, Name = "Spartak-Dinamo" };
+                line.Add(e);
                 e = new Event { Factor = 1.0m, Name = "Dinamo-Spartak" };
-                Line.Add(e);
+                line.Add(e);
                 e = new Event { Factor = 1.0m, Name = "Spartak:Dinamo" };
-                Line.Add(e);
+                line.Add(e);
             }
         }
     }

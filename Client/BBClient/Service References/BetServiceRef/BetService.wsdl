@@ -31,6 +31,18 @@
   <wsdl:message name="IBetService_MakeBet_OutputMessage">
     <wsdl:part name="parameters" element="tns:MakeBetResponse" />
   </wsdl:message>
+  <wsdl:message name="IBetService_GetBet_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBet" />
+  </wsdl:message>
+  <wsdl:message name="IBetService_GetBet_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBetResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBetService_GetBets_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBets" />
+  </wsdl:message>
+  <wsdl:message name="IBetService_GetBets_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBetsResponse" />
+  </wsdl:message>
   <wsdl:message name="IBetService_GetAccountAmount_InputMessage">
     <wsdl:part name="parameters" element="tns:GetAccountAmount" />
   </wsdl:message>
@@ -71,6 +83,14 @@
     <wsdl:operation name="MakeBet">
       <wsdl:input wsaw:Action="http://tempuri.org/IBetService/MakeBet" message="tns:IBetService_MakeBet_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IBetService/MakeBetResponse" message="tns:IBetService_MakeBet_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBet">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBetService/GetBet" message="tns:IBetService_GetBet_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBetService/GetBetResponse" message="tns:IBetService_GetBet_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBets">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBetService/GetBets" message="tns:IBetService_GetBets_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBetService/GetBetsResponse" message="tns:IBetService_GetBets_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetAccountAmount">
       <wsdl:input wsaw:Action="http://tempuri.org/IBetService/GetAccountAmount" message="tns:IBetService_GetAccountAmount_InputMessage" />
@@ -120,6 +140,24 @@
     </wsdl:operation>
     <wsdl:operation name="MakeBet">
       <soap:operation soapAction="http://tempuri.org/IBetService/MakeBet" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBet">
+      <soap:operation soapAction="http://tempuri.org/IBetService/GetBet" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBets">
+      <soap:operation soapAction="http://tempuri.org/IBetService/GetBets" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

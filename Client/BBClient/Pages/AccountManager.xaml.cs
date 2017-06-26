@@ -43,10 +43,10 @@ namespace BBClient.Pages
         private void listUpdateBtn_Click(object sender, RoutedEventArgs e)
         {
             var client = new BetServiceClient();
+            EventsListView.Items.Clear();
             foreach (var ev in client.GetEvents())
             {
-                EventsListView.Items.Add(new {ev.Factor, ev.Name });
-                
+                EventsListView.Items.Add(new Event { Factor = ev.Factor, Name = ev.Name });
             }
             client.Close();
         }
@@ -66,6 +66,34 @@ namespace BBClient.Pages
                 amountStatus.Text = "Account cannot be refilled";
             }
             client.Close();
+        }
+
+        private void SimpleBet_Click(object sender, RoutedEventArgs e)
+        {
+            var client = new BetServiceClient();
+            if (EventsListView.SelectedItem == null) BetStatus.Content = "Select event to play with";
+            var item = (Event)EventsListView.SelectedItem;
+
+            var results = new Event
+            {
+                Factor = item.Factor,
+                Name = item.Name
+            };
+            int betAmount;
+            if (!int.TryParse(BetTextBox.Text, out betAmount))
+            {
+                BetStatus.Content = "Wrong bet";
+            }
+            else
+            {
+                if (betAmount > account.Amount) BetStatus.Content = "Not Enough money";
+                client.AccountWithdraw(account.Code, betAmount);
+                client.MakeBet(account.Code, betAmount, BetType.Simple, new[] { results });
+                BetStatus.Content = "Bet Success";
+            }
+
+            client.Close();
+
         }
 
         private void withdrawBtn_Click(object sender, RoutedEventArgs e)
@@ -89,6 +117,23 @@ namespace BBClient.Pages
         {
             UpdateAccountInfo();
         }
-        
+
+        private void BetUpdateBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var client = new BetServiceClient();
+            if (!string.IsNullOrEmpty(betCodeTB.Text))
+            {
+
+            }
+            else
+            {
+               /* var bets = client.GetBets(account.Code);
+                BetsListView.Items.Clear();
+                foreach (var bet in bets)
+                {
+                    BetsListView.Items.Add(bet);
+                }*/
+            }
+        }
     }
 }

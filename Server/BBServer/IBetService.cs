@@ -28,6 +28,12 @@ namespace BBServer
         [OperationContract]
         void MakeBet(int accCode, decimal amount, BetType type, List<Event> results);
 
+        [OperationContract]
+        Bet GetBet(int betCode);
+
+        [OperationContract]
+        List<Bet> GetBets(int accCode);
+
         /// <summary>
         /// returns account amount
         /// </summary>
@@ -36,6 +42,13 @@ namespace BBServer
         [OperationContract]
         decimal GetAccountAmount(int accountCode);
 
+        /// <summary>
+        /// only substracts money from account.
+        /// money should be given in another service
+        /// </summary>
+        /// <param name="accountCode"></param>
+        /// <param name="amount"></param>
+        /// <returns></returns>
         [OperationContract]
         bool AccountWithdraw(int accountCode, int amount);
 
@@ -52,10 +65,11 @@ namespace BBServer
         Account CreateAccount(string fio);
     }
 
-     // Use a data contract as illustrated in the sample below to add composite types to service operations.
+    // Use a data contract as illustrated in the sample below to add composite types to service operations.
     [DataContract]
     public class Event
     {
+
         [DataMember]
         public decimal Factor { get; set; }
         [DataMember]
@@ -63,9 +77,12 @@ namespace BBServer
     }
     public enum GameResult
     {
-        [EnumMember] Win = 1,
-        [EnumMember] Spare = 0,
-        [EnumMember] Lose = -1
+        [EnumMember]
+        Win = 1,
+        [EnumMember]
+        Spare = 0,
+        [EnumMember]
+        Lose = -1
     }
 
     public enum BetType

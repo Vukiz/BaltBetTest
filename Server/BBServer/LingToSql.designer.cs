@@ -97,8 +97,6 @@ namespace BBServer
 		
 		private decimal _Amount;
 		
-		private EntitySet<Bet> _Bets;
-		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -113,7 +111,6 @@ namespace BBServer
 		
 		public Account()
 		{
-			this._Bets = new EntitySet<Bet>(new Action<Bet>(this.attach_Bets), new Action<Bet>(this.detach_Bets));
 			OnCreated();
 		}
 		
@@ -177,19 +174,6 @@ namespace BBServer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Account_Bet", Storage="_Bets", ThisKey="Code", OtherKey="Account_Code")]
-		public EntitySet<Bet> Bets
-		{
-			get
-			{
-				return this._Bets;
-			}
-			set
-			{
-				this._Bets.Assign(value);
-			}
-		}
-		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -208,18 +192,6 @@ namespace BBServer
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_Bets(Bet entity)
-		{
-			this.SendPropertyChanging();
-			entity.Account = this;
-		}
-		
-		private void detach_Bets(Bet entity)
-		{
-			this.SendPropertyChanging();
-			entity.Account = null;
 		}
 	}
 	
@@ -241,8 +213,6 @@ namespace BBServer
 		
 		private System.DateTime _BetDate;
 		
-		private EntityRef<Account> _Account;
-		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -263,7 +233,6 @@ namespace BBServer
 		
 		public Bet()
 		{
-			this._Account = default(EntityRef<Account>);
 			OnCreated();
 		}
 		
@@ -298,10 +267,6 @@ namespace BBServer
 			{
 				if ((this._Account_Code != value))
 				{
-					if (this._Account.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
 					this.OnAccount_CodeChanging(value);
 					this.SendPropertyChanging();
 					this._Account_Code = value;
@@ -387,40 +352,6 @@ namespace BBServer
 					this._BetDate = value;
 					this.SendPropertyChanged("BetDate");
 					this.OnBetDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Account_Bet", Storage="_Account", ThisKey="Account_Code", OtherKey="Code", IsForeignKey=true)]
-		public Account Account
-		{
-			get
-			{
-				return this._Account.Entity;
-			}
-			set
-			{
-				Account previousValue = this._Account.Entity;
-				if (((previousValue != value) 
-							|| (this._Account.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Account.Entity = null;
-						previousValue.Bets.Remove(this);
-					}
-					this._Account.Entity = value;
-					if ((value != null))
-					{
-						value.Bets.Add(this);
-						this._Account_Code = value.Code;
-					}
-					else
-					{
-						this._Account_Code = default(int);
-					}
-					this.SendPropertyChanged("Account");
 				}
 			}
 		}

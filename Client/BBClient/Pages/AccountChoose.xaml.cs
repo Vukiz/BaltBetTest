@@ -52,6 +52,10 @@ namespace BBClient.Pages
                         NavigationService?.Navigate(new AccountManager(acc));
                     }
                 }
+                catch (Exception ex)
+                {
+                    loginStatus.Text = "Cannot connect to server";
+                }
                 finally
                 {
                     client.Close();
@@ -84,6 +88,10 @@ namespace BBClient.Pages
                         accountCreationToolTip.Text = "Account creation succeed";
                         NavigationService?.Navigate(new AccountManager(acc));
                     }
+                }
+                catch (Exception ex)
+                {
+                    loginStatus.Text = "Cannot connect to server";
                 }
                 finally
                 {
