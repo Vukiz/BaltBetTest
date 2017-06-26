@@ -29,10 +29,13 @@ namespace BBClient.Pages
                 {
                     client.Open();
                     var acc = client.GetAccount(accCode);
-                    if (acc.Code == 0) loginStatus.Text = "There is no account with code - " + accCode;
+                    if (acc.Code == 0)
+                    {
+                        loginStatus.Text = $"There is no account with code - {accCode}";
+                    }
                     else
                     {
-                        loginStatus.Text = "Succesfull login";
+                        loginStatus.Text = "Succesful login";
                         NavigationService?.Navigate(new AccountManager(accCode));
                     }
                 }

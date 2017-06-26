@@ -40,7 +40,7 @@ namespace BBClient.Pages
             }
         }
 
-        private void ListUpdateBtnClick(object sender, RoutedEventArgs e)
+        private void EventListUpdateBtnClick(object sender, RoutedEventArgs e)
         {
             var client = new BetServiceClient();
             try
@@ -75,7 +75,7 @@ namespace BBClient.Pages
                 {
                     account.Amount += amount;
                     accountAmountTB.Text = account.Amount.ToString();
-                    MessageBox.Show($"Succesfully refilled account by {amount}");
+                    MessageBox.Show($"Successfully refilled account by {amount}");
                     refillTB.Text = "";
                 }
                 else
@@ -154,7 +154,7 @@ namespace BBClient.Pages
                     account.Amount -= amount;
                     accountAmountTB.Text = account.Amount.ToString();
 
-                    MessageBox.Show($"Succesfully withdrew  {amount}");
+                    MessageBox.Show($"Successfully withdrew  {amount}");
                     withdrawTB.Text = "";
                 }
                 else
@@ -238,7 +238,7 @@ namespace BBClient.Pages
             }
             EventFactorTB.Text = "";
             EventNameTB.Text = "";
-            ListUpdateBtnClick(sender, e);
+            EventListUpdateBtnClick(sender, e);
         }
     }
 }

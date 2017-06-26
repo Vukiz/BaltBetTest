@@ -151,7 +151,6 @@ namespace BBServer
         /// </summary>
         private void InitEvents()
         {
-            if (line != null) return;
             line = new List<Event>();
             var e = new Event {Factor = 1.0m, Name = "Spartak-Dinamo"};
             line.Add(e);
